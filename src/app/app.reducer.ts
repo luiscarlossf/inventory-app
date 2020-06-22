@@ -11,3 +11,5 @@ const rootReducer: Reducer<AppState> = combineReducers<AppState>({
     users: UsersReducer,
     groups: GroupsReducer
 });
+
+export default rootReducer;
