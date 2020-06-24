@@ -1,20 +1,41 @@
-import {
-    Action,
-    ActionCreator
-} from 'redux';
+import { createAction, props} from '@ngrx/store';
 import { User } from './user.model';
 
-/** @type {string} Descrição da acão. */
-export const SET_CURRENT_USER = '[User] Set Current';
+/** Ação que loga o usuário no sistema.
+ * Recebe como payload o email e a senha do usuário a ser logado.
+*/
+export const login = createAction(
+    '[Login Page] Login',
+    props<{email: string, password: string, connected: boolean}>(),
+);
 
-/** Ação que configura o usuário corrente*/
-export interface SetCurrentUserAction extends Action{
-    user: User;
-}
+/**
+ * Ação executada quando um login do é realizado
+ * com sucesso.
+ */
+export const loginSuccess = createAction(
+    '[Backend API] Login Success',
+    props<{user:User}>(),
+);
 
-/** @type {function} Criador da ação SET_CURRENT_USER.*/
-export const setCurrentUser: ActionCreator<SetCurrentUserAction> = 
-(user) => ({
-    type: SET_CURRENT_USER,
-    user: user
-});
+/**
+ * Ação realizada quando ocorre uma falha durante
+ * o login.
+ */
+export const loginFailure = createAction(
+    '[Backend API] Login Failure',
+    props<{error: any}>(),
+);
+
+/** Ação que desloga o usuário do sistema.*/
+export const logout= createAction(
+    '[Header Page] Logout',
+);
+
+/**
+ * Ação que mantém o usuário corrente conectado mesmo depois de 
+ * fechar a janela do navegador. 
+ * */
+export const keepConnected = createAction(
+    '[Login Page] Keep connected',
+);
