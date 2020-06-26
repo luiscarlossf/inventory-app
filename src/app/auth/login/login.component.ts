@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, EmailValidator, Validators, CheckboxRequiredValidator } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import * as UserActions from '../user/user.actions';
-import * as fromUser from '../user/user.reducer';
+import * as UserActions from 'src/app/user/user.actions';
+import * as fromUser from 'src/app/user/user.reducer';
 import { Observable } from 'rxjs';
-import { User } from '../user/user.model';
+import { User } from 'src/app/user/user.model';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
-  user$: Observable<fromUser.UserState>;
   
   constructor( fb: FormBuilder, private readonly store: Store<{user:fromUser.UserState}>, private router: Router) { 
     this.loginForm = fb.group({
@@ -22,19 +21,9 @@ export class LoginComponent implements OnInit {
       'password':[''],
       'checkbox':[false]
     });
-    this.user$ = store.pipe(select('user'));
   }
 
   ngOnInit(): void {
-    this.user$.subscribe(
-      user => {
-        console.log("User subscribe!");
-        if(user.currentUser){
-          this.router.navigate(['home']).then(()=> console.log('Lindo!'));
-        }else{
-          console.log("Erro no login");
-        }
-    });
   }
 
   onSubmit(form: any){
