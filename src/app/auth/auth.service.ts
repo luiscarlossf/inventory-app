@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { User } from '../user/user.model';
-import { BackendService } from '../backend.service';
+import { BackendService } from '../backend/backend.service';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -24,7 +24,7 @@ export class AuthService implements OnInit{
   /**@type {string} Token de autorização do usuário corrente. */
   private token: string;
   /**@type {string} Url da Backend API */
-  private apiUrl:  string = environment.apiUrl;
+  private apiUrl:  string = environment.apiUrl + 'api-token-auth/';
   /**@type {string} Url da página a ser redirecionada caso o login tenha sucesso.*/
   redirectUrl: string = 'home';
   /**@type {boolean} Indica se o existe um usuário logado. */

@@ -6,7 +6,7 @@ import { AuthModule } from "./auth/auth.module";
 
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './http-interceptors/index';
-import { BackendService } from './backend.service';
+import { BackendService } from './backend/backend.service';
 import { StoreModule } from '@ngrx/store';
 import * as fromUser from './user/user.reducer';
 import { GroupsReducer } from './group/group.reducer';
