@@ -14,12 +14,24 @@ import { HomeComponent } from './home/home.component';
 import { UserEffects } from './user/user.effects';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import { FormsModule } from '@angular/forms';
+import { SearchBoxComponent } from './search-box/search-box.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    SearchBoxComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +43,15 @@ import { AppRoutingModule } from './app-routing.module';
       groups: GroupsReducer,
     }),
     EffectsModule.forRoot([UserEffects]),
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
+    MatInputModule,
+    MatCardModule,
   ],
   providers: [
     BackendService,
