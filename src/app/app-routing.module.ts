@@ -8,12 +8,12 @@ import { AppComponent } from './app.component';
 const routes : Routes = [
     { path: '', 
       component: AppComponent,
-      canActivate:[AuthGuard]
+      //canActivate:[AuthGuard]
     },
     {
       path: 'home',
       component: HomeComponent,
-      canActivate: [AuthGuard]
+      //canActivate: [AuthGuard]
     }
 ];
 
