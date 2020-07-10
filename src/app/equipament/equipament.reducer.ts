@@ -9,7 +9,7 @@ import { AppState } from '../app.state';
  */
 export interface EquipamentState{
     /**
-     * @type {object} Equipamentos dos equipamentos logados.
+     * @type {object} Estado dos equipamentos sendo monitorados.
      */
     allEquipaments: Map<string, Equipament>;
     error: Error;
@@ -98,7 +98,7 @@ const initialState: EquipamentState = {
  export const selectEquipament = (state: AppState) => state.equipaments;
 
 /**
- * Retorna todas os equipamentos dos equipamentos.
+ * Retorna todas os equipamentos.
  */
 export const selectAllEquipaments = createSelector(
      selectEquipament,
