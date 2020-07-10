@@ -4,6 +4,9 @@ import * as fromBrand from './brand/brand.reducer';
 import * as fromModel from './model/model.reducer';
 import * as fromFloor from './floor/floor.reducer';
 import * as fromCategory from './category/category.reducer';
+import * as fromUa from './ua/ua.reducer';
+import * as fromEquipament from './equipament/equipament.reducer';
+import * as fromComputer from './computer/computer.reducer';
 
 export interface AppState{
     user: fromUser.UserState;
@@ -12,4 +15,8 @@ export interface AppState{
     categories: fromCategory.CategoryState;
     models: fromModel.ModelState;
     floors: fromFloor.FloorState;
+    uas: fromUa.UaState;
+    equipaments: fromEquipament.EquipamentState;
+    computers: fromComputer.ComputerState;
+
 }
