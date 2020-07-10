@@ -1,4 +1,4 @@
 export interface Model{
-    url: string;
+    url?: string;
     name: string;
 }
