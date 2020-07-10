@@ -1,22 +1,22 @@
-import { Brand } from '../brand/brand.model';
-import { Category } from '../category/category.model';
-import { Model } from '../model/model.model';
-import { Ua } from '../ua/ua.model';
-import { Floor } from '../floor/floor.model';
 
 export enum Status {'Usado', 'Almoxarifado', 'Sucata', 'Doação'};
 
-export interface Computer{
-    url: string;
+export interface Equipament{
+    url?: string;
     patrimony: string;
-    warranty_start: Date;
-    warranty_end: Date;
-    acquisition_date: Date;
-    acquisition_value: number;
+    warranty_start?: Date;
+    warranty_end?: Date;
+    acquisition_date?: Date;
+    acquisition_value?: number;
     status: Status;
-    brand: Brand;
-    category: Category;
-    model: Model;
-    ua: Ua;
-    floor: Floor;
+    /**@type {string} Url da marca do equipamento. */
+    brand?: string;
+    /**@type {string} Url da categoria do equipamento. */
+    category: string;
+    /**@type {string} Url do modelo do equipamento. */
+    model?: string;
+    /**@type {string} Url da Unidade Administrativa que o equipamento pertence. */
+    ua?: string;
+    /**@type {string} Url do andar onde o equipamento está localizado. */
+    floor?: string;
 }
