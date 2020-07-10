@@ -1,4 +1,4 @@
 export interface Floor{
-    url: string;
+    url?: string;
     name: string;
 }
