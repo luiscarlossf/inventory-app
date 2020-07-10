@@ -30,7 +30,7 @@ export const createCategoryFailure = createAction(
 
 
 /**
- * Ação que carrega todas as marcas armazenadas no
+ * Ação que carrega todas as categorias armazenadas no
  * backend.
  */
 export const loadCategories = createAction(
@@ -39,8 +39,8 @@ export const loadCategories = createAction(
 
 
 /**
- * Ação conclui com sucesso o carregamento das marcas.
- * Recebe como payload as marcas carregadas. 
+ * Ação conclui com sucesso o carregamento das categorias.
+ * Recebe como payload as categorias carregadas. 
  */
 export const loadCategoriesSuccess = createAction(
     '[Backend API] Load Categories Success',
@@ -48,7 +48,7 @@ export const loadCategoriesSuccess = createAction(
 );
 
 /**
- * Ação conlcui com falha o carregamento das marcas.
+ * Ação conlcui com falha o carregamento das categorias.
  * Recebe como payload o erro ocorrido. 
  */
 export const loadCategoriesFailure = createAction(
