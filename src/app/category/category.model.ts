@@ -1,4 +1,4 @@
 export interface Category{
-    url: string;
+    url?: string;
     name: string;
 }
