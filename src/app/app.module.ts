@@ -25,6 +25,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { SearchBoxComponent } from './search-box/search-box.component';
+import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { SearchBoxComponent } from './search-box/search-box.component';
     AppComponent,
     HomeComponent,
     SearchBoxComponent,
+    NavMenuComponent,
   ],
   imports: [
     BrowserModule,

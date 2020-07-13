@@ -1,18 +1,19 @@
 <mat-toolbar class="header" >
   <mat-toolbar-row>
+    <div class="toolbar-home-container">
+      <button class="menu-icon" mat-icon-button  (click)="sidenav.toggle()" title="Menu de navegação">
+        <mat-icon svgIcon="menu-icon"></mat-icon>
+      </button>
 
-    <button mat-icon-button (click)="sidenav.toggle()" title="Docs menu">
-      <mat-icon>menu</mat-icon>
-    </button>
-
-    <a class="nav-link home" href="/">
-      Inventory
-      <!--<img *ngSwitchCase="true" src="assets/images/logos/angular/logo-nav@2x.png" width="150" height="40" title="Home" alt="Home">
-      <img *ngSwitchDefault src="assets/images/logos/angular/shield-large.svg" width="37" height="40" title="Home" alt="Home"> -->
-    </a>
-
-    <app-search-box class="search-container" #searchBox (onSearch)="doSearch($event)" (onFocus)="doSearch($event)"></app-search-box>
-    
+      <a  href="/">
+        <img src="assets/img/logo/logo-nav@1x.png" title="Home" alt="Home">
+      </a>
+    </div>
+    <!---->
+    <div class="toolbar-search-container">
+      <app-search-box class="search-container" #searchBox (onSearch)="doSearch($event)" (onFocus)="doSearch($event)"></app-search-box>
+    </div>
+    <!---->
     <div class="toolbar-user-container">
         <img mat-card-avatar src="./assets/img/avatar/user.jpeg" alt="User Avatar"> <!--<div mat-card-avatar class="header-avatar-image"></div>-->
         <mat-card-subtitle>Luis Carlos</mat-card-subtitle>
@@ -20,22 +21,18 @@
 
   </mat-toolbar-row>
 </mat-toolbar>
-
+<!---->
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav class="sidenav"
       [attr.role]="'navigation'"
       [mode]="'side'"
       [opened]="false"
       [fixedInViewport]="false">
-    <mat-nav-list>
-      <a mat-list-item href="#">HOME</a>
-      <a mat-list-item href="#">EQUIPAMENTOS</a>
-      <a mat-list-item href="#">RELATÓRIOS</a>
-      <a mat-list-item href="#">USUÁRIOS</a>
-    </mat-nav-list>
+    <app-nav-menu></app-nav-menu>
   </mat-sidenav>
     <main>
         Conteúdo Principal
     </main>
 </mat-sidenav-container>
+<!---->
 <mat-toolbar class="footer">Footer</mat-toolbar>

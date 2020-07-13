@@ -1,0 +1,8 @@
+<mat-nav-list>
+  <mat-list-item *ngFor="let link of links">
+    <a matLine href="{{link.url}}" title="{{ link.tip }}"> 
+        <mat-icon svgIcon="{{ link.icon }}"></mat-icon>
+        {{ link.title }} 
+    </a>
+  </mat-list-item>
+</mat-nav-list>

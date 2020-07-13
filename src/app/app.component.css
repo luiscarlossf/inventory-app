@@ -12,20 +12,28 @@
     justify-content: center;
     width: 200px;
 }
-  
-  .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-  
-  .footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
+
+
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.toolbar-home-container{
+  align-items: center;
+  justify-content: center;
+
+}
 
 .toolbar-user-container{
   max-width: 184.39px;
