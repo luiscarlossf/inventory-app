@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavLink } from './nav-link.model';
+import { NavLink } from '../../models/nav-link.model';
 
 @Component({
   selector: 'app-nav-menu',

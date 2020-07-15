@@ -1,11 +1,11 @@
 import { Injectable, OnInit } from '@angular/core';
-import { User } from '../user/user.model';
+import { User } from '../models/user.model';
 import { BackendService } from '../backend/backend.service';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Store, select } from '@ngrx/store';
-import * as fromUser from '../user/user.reducer';
+import * as fromUser from '../redux/user/user.reducer';
 import { Router } from '@angular/router';
 
 /**

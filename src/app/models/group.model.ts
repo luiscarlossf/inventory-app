@@ -1,4 +1,4 @@
-import { Permission } from '../permission/permission.model';
+import { Permission } from './permission.model';
 
 /**
  * Representação de um grupo de permissões, similar a classe Group do Django.

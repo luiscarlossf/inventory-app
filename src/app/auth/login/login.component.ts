@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, EmailValidator, Validators, CheckboxRequiredValidator } from '@angular/forms';
 import { Store, select } from '@ngrx/store';
-import * as UserActions from 'src/app/user/user.actions';
-import * as fromUser from 'src/app/user/user.reducer';
+import * as UserActions from 'src/app/redux/user/user.actions';
+import * as fromUser from 'src/app/redux/user/user.reducer';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/user/user.model';
+import { User } from '../../models/user.model';
 import { Router } from '@angular/router';
 
 @Component({

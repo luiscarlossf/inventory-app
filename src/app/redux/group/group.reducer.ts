@@ -1,4 +1,4 @@
-import { Group } from './group.model';
+import { Group } from '../../models/group.model';
 import { Action } from 'redux';
 
 /**Definição do estado do ramo groups da árvore state*/

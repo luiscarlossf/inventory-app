@@ -1,5 +1,5 @@
-import { Group } from '../group/group.model';
-import { Permission } from '../permission/permission.model';
+import { Group } from './group.model';
+import { Permission } from './permission.model';
 
 /**
  * Representação do usuário do sistema, similar a class User do Django.
