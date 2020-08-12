@@ -1,8 +1,8 @@
 import { createReducer, Action, on, createSelector } from   '@ngrx/store';
 import * as EquipamentActions from './equipament.actions';
-import { Equipament } from  './equipament.model';
+import { Equipament } from  '../../models/equipament.model';
 import { produce } from 'immer';
-import { AppState } from '../app.state';
+import { AppState } from '../../app.state';
 
 /**
  * @interface
@@ -19,7 +19,7 @@ export interface EquipamentState{
  * Estado inicial para equipaments
  */
 const initialState: EquipamentState = {
-    allEquipaments: null,
+    allEquipaments: new Map<string, Equipament>(),
     error: null,
 };
 
@@ -98,10 +98,18 @@ const initialState: EquipamentState = {
  export const selectEquipament = (state: AppState) => state.equipaments;
 
 /**
- * Retorna todas os equipamentos.
+ * Retorna a propriedade allEquipamentos
  */
 export const selectAllEquipaments = createSelector(
-     selectEquipament,
-     (equipaments: EquipamentState) => equipaments.allEquipaments,
+    selectEquipament,
+    (equipaments: EquipamentState) => equipaments.allEquipaments,
+);
+
+/**
+ * Retorna todos os equipamentos do ramo.
+ */
+export const selectEquipaments = createSelector(
+    selectAllEquipaments,
+    (allEquipaments: Map<string, Equipament>) => [...allEquipaments.values()],
 );
  
