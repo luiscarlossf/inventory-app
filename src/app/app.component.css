@@ -1,52 +1,127 @@
+header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+  max-width: 100%;
+  background-color: #FFFF;
+  box-shadow: 0px 4px 4px rgba(43, 45, 55, 0.0105441);
+}
+.left{
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+}
+header .left .logo{
+  position: relative;
+  margin-left: 30px;
+  top: 2px;
+}
+.center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+.right{
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
+}
+header .user-name{
+  position: relative;
+  bottom: 10px;
+  margin-left: 10px;
+}
+
+header .user-name{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  /* identical to box height, or 371% */
+  color: #74798C;
+}
+
+/*SEARCH*/
+.search input, 
+.search button{
+    background: none;
+    border: none;
+}
+.search input{
+    flex:1;
+    border:none;
+}
+header .search{
+    background-color: #EDEEF4;
+    border-radius: 15px;
+    padding: 10px;
+}
+.search{
+    display: flex;
+    flex: 1;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+/*FIM SEARCH*/
+
+/*CURRENT USER*/
+.user-content a{
+  text-decoration: none;
+}
+
+.user-content img{
+  border-radius: 30px;
+}
+/*FIM CURRENT USER*/
+.sidenav {
+  background-color: #0424D9;
+  margin: 10px;
+  border-radius: 15px;
+  color: cornsilk;
+  width: 230px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 14px;
+}
+
+
 .sidenav-container {
     position: absolute;
     top: 60px;
-    bottom: 60px;
+    bottom: 30px;
     left: 0;
     right: 0;
 }
 
-.sidenav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 200px;
+main{
+  margin: 10px;
 }
 
-
-
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  background: #ffffff;
-}
-
-.footer {
+footer{
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #A0A5BA;
+}
+
+footer a{
+  color: grey;
+  text-decoration: none;
 }
 .toolbar-home-container{
   align-items: center;
   justify-content: center;
 
-}
-
-.toolbar-user-container{
-  max-width: 184.39px;
-  height: 60px;
-}
-.header-avatar-image {
-    background-image: url(src/assets/img/avatar/user.jpeg);
-    background-size: cover;
-}
-.mat-card-avatar {
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    flex-shrink: 0;
-    object-fit: cover;
 }
