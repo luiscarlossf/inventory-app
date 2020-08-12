@@ -14,7 +14,8 @@ export class UserEffects{
         .pipe(
             map(user => {
                 console.log("Login Sucess!", user);
-                let login = UserActions.loginSuccess({ user })
+                let login = UserActions.loginSuccess({ user });
+                localStorage.setItem("token", user.token);
                 this.auth.setUser(user);
                 return login;
             }),
