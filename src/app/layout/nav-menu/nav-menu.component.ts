@@ -8,13 +8,15 @@ import { NavLink } from '../../models/nav-link.model';
 })
 export class NavMenuComponent implements OnInit {
   links: NavLink[];
+  currentPage: number;
 
   constructor() { 
+    this.currentPage = 1;
     this.links = [
       {title: "HOME", icon: 'home', url: '/', tip: 'Páginal Inicial'},
-      {title: "EQUIPAMENTOS", icon: 'apps'},
-      {title: "RELATÓRIOS", icon: 'chart'},
-      {title: "USUÁRIOS", icon: 'users'},
+      {title: "EQUIPAMENTOS", icon: 'apps', url: 'equipaments', tip: 'Lista de equipamentos'},
+      {title: "RELATÓRIOS", icon: 'chart', tip: 'Relatórios sobre os equipamentos'},
+      {title: "USUÁRIOS", icon: 'users', tip: 'Lista de usuários do sistema'},
     ];
   }
 
