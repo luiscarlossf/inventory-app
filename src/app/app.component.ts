@@ -24,19 +24,19 @@ export class AppComponent {
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/logo/logo-nav@1px.svg'));
     iconRegistry.addSvgIcon(
       'apps',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/apps.svg'));
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/apps-white@1px.svg'));
     iconRegistry.addSvgIcon(
       'home',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/home-minimal.svg'));
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/home-white@1px.svg'));
     iconRegistry.addSvgIcon(
       'logout',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/logout-icon.svg'));  
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/logout-white@1px.svg'));  
     iconRegistry.addSvgIcon(
       'users',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/multiple-19.svg'));
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/multiple-white@1px.svg'));
     iconRegistry.addSvgIcon(
       'chart',
-      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/chart-pie-36.svg'));
+      sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/chart-white@1px.svg'));
   }
 
   doSearch(query: string){}
