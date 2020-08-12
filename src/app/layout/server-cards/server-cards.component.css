@@ -1,0 +1,8 @@
+.server-card mat-card {
+    max-width: 208px;
+    height: 100px;
+    background: #FFFFFF;
+    border: 1px solid #E6E5F2;
+    box-sizing: border-box;
+    border-radius: 28px;
+}
