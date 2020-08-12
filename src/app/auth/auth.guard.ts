@@ -34,7 +34,7 @@ export class AuthGuard implements CanActivate, CanLoad{
     }
 
     checkLogin(url: string): boolean {
-        if (this.auth.isLoggedIn) {
+        if (this.auth.isLoggedIn || localStorage.getItem('token') ){
             ///////////
             console.log("Navegando para próxima página.");
             //////////

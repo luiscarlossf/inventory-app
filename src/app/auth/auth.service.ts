@@ -85,6 +85,12 @@ export class AuthService implements OnInit{
    * @returns {string} Token de autorização;
    */
   getAuthorizationToken(): string{
+    ///////REMOVER DURANTE A PRODUÇÃO/////
+    let t = localStorage.getItem("token");
+    if(t){
+      return t;
+    }
+    ////////////////////////////////////
     return this.token;
   }
 
@@ -113,5 +119,6 @@ export class AuthService implements OnInit{
     this.isLoggedIn = false;
     this.user = null;
     this.token = null;
+    localStorage.removeItem('token');
   }
 }
