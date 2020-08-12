@@ -1,3 +1,48 @@
+<header>
+  <div class="left">
+      <button class="menu-icon" mat-icon-button  (click)="sidenav.toggle()" title="Menu de navegação">
+          <img src="assets/img/menu/menu-icon@1px.svg" 
+                alt="Menu de Navegação">
+      </button>
+      <a href="/" title="Página Inicial" class="logo">
+          <img src="assets/img/logo/logo-nav@1px.svg"
+                alt="Logo do sistema. Está escrito Inventory.">
+      </a>
+  </div>
+  <div class="center">
+      <div class="search">
+          <button type="submit">
+              <img src="assets/img/search/search-icon@1px.svg"
+                  alt="Lupa. Botão de pesquisa"
+                  title="Pesquisa">
+          </button>
+          <input type="search"
+              id="search"
+              name="search"
+              placeholder="Pesquise o patrimônio"
+              list="mySuggestion">
+          <datalist id="mySuggestion">
+              <option>00000000</option>
+              <option>11111111</option>
+              <option>22222222</option>
+              <option>33333333</option>
+          </datalist>   
+      </div>                    
+  </div>
+  <div class="right">
+      <div class="user-content">
+          <a href="#" title="Usuário logado">
+              <img class="user-avatar"
+                  src="assets/img/avatar/user.jpeg"
+                  alt="Usuário logado"
+                  width="32px"
+                  height="32px">
+              <span class="user-name">Luis Carlos</span>
+          </a>
+      </div>
+  </div>
+</header>
+<!--
 <mat-toolbar class="header" >
   <mat-toolbar-row>
     <div class="toolbar-home-container">
@@ -9,18 +54,18 @@
         <img src="assets/img/logo/logo-nav@1x.png" title="Home" alt="Home">
       </a>
     </div>
-    <!---->
+  
     <div class="toolbar-search-container">
       <app-search-box class="search-container" #searchBox (onSearch)="doSearch($event)" (onFocus)="doSearch($event)"></app-search-box>
     </div>
-    <!---->
+
     <div class="toolbar-user-container">
-        <img mat-card-avatar src="./assets/img/avatar/user.jpeg" alt="User Avatar"> <!--<div mat-card-avatar class="header-avatar-image"></div>-->
+        <img mat-card-avatar src="./assets/img/avatar/user.jpeg" alt="User Avatar"> <!--<div mat-card-avatar class="header-avatar-image"></div>
         <mat-card-subtitle>Luis Carlos</mat-card-subtitle>
     </div>
-
   </mat-toolbar-row>
 </mat-toolbar>
+-->
 <!---->
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav class="sidenav"
@@ -31,8 +76,17 @@
     <app-nav-menu></app-nav-menu>
   </mat-sidenav>
     <main>
-        Conteúdo Principal
+        <router-outlet></router-outlet>
     </main>
 </mat-sidenav-container>
-<!---->
+<footer>
+    <div class="left">
+        <p>Criado por <a href="https://github.com/luiscarlossf" title="Perfil do github do autor do sistema.">Luis Carlos</a></p>
+    </div>
+    <div class="right">
+        <p>Última atualização 17:41 de 29/07/2020</p>
+    </div>
+</footer>
+<!--
 <mat-toolbar class="footer">Footer</mat-toolbar>
+-->
