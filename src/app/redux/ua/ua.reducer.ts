@@ -1,8 +1,8 @@
 import { createReducer, Action, on, createSelector } from   '@ngrx/store';
 import * as UaActions from './ua.actions';
-import { Ua } from  './ua.model';
+import { Ua } from  '../../models/ua.model';
 import { produce } from 'immer';
-import { AppState } from '../app.state';
+import { AppState } from '../../app.state';
 
 /**
  * @interface

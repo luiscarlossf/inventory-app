@@ -1,5 +1,5 @@
 import { createAction, props} from '@ngrx/store';
-import { User } from './user.model';
+import { User } from '../../models/user.model';
 
 /** Ação que loga o usuário no sistema.
  * Recebe como payload o email e a senha do usuário a ser logado.

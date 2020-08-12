@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Ua } from './ua.model';
+import { Ua } from '../../models/ua.model';
 
 /**
  * Ação que cria uma nova ua.
