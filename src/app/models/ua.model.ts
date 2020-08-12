@@ -1,4 +1,4 @@
-import { Floor } from '../floor/floor.model';
+import { Floor } from './floor.model';
 /**
  * @interface
  * Modelo que define uma Unidade Administrativa.

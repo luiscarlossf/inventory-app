@@ -1,4 +1,4 @@
-import { Equipament} from '../equipament/equipament.model';
+import { Equipament} from './equipament.model';
 
 export interface Computer extends Equipament{
     policy?: boolean;

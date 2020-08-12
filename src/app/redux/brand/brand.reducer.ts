@@ -1,8 +1,8 @@
 import { createReducer, Action, on, createSelector } from   '@ngrx/store';
 import * as BrandActions from './brand.actions';
-import { Brand } from  './brand.model';
+import { Brand } from  '../../models/brand.model';
 import { produce } from 'immer';
-import { AppState } from '../app.state';
+import { AppState } from '../../app.state';
 
 /**
  * @interface

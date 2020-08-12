@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../../backend/backend.service';
 import * as ModelActions from './model.actions';
-import { Model } from './model.model';
+import { Model } from '../../models/model.model';
 import { mergeMap, catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 

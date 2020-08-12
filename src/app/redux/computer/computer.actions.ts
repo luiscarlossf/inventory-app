@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
-import { Status } from '../equipament/equipament.model';
-import { Computer} from './computer.model';
+import { Status } from '../../models/equipament.model';
+import { Computer} from '../../models/computer.model';
 
 /**
  * Ação que cria um novo computador.

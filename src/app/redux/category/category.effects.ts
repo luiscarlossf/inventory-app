@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../../backend/backend.service';
 import * as CategoryActions from './category.actions';
-import { Category } from './category.model';
+import { Category } from '../../models/category.model';
 import { mergeMap, catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 

@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Floor } from './floor.model';
+import { Floor } from '../../models/floor.model';
 
 /**
  * Ação que cria um novo andar.

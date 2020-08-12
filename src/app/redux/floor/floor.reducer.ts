@@ -1,8 +1,8 @@
 import { createReducer, Action, on, createSelector } from   '@ngrx/store';
 import * as FloorActions from './floor.actions';
-import { Floor } from  './floor.model';
+import { Floor } from  '../../models/floor.model';
 import { produce } from 'immer';
-import { AppState } from '../app.state';
+import { AppState } from '../../app.state';
 
 /**
  * @interface

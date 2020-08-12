@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Brand } from './brand.model';
+import { Brand } from '../../models/brand.model';
 
 /**
  * Ação que cria uma nova marca.

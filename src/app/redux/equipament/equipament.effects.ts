@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../../backend/backend.service';
 import * as EquipamentActions from './equipament.actions';
-import { Equipament } from './equipament.model';
+import { Equipament } from '../../models/equipament.model';
 import { mergeMap, catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -52,10 +52,12 @@ export class EquipamentEffects{
                 results.forEach(element => {
                     equipaments.set(element.url, element);
                 });
+                console.log("Carregando equipamentos...");
                 return EquipamentActions.loadEquipamentsSuccess({equipaments});
             }))
         ),
         catchError( error => {
+            console.log("Falha no carregamento dos equipamentos...");
             return of(EquipamentActions.loadEquipamentsFailure({error}));
         })
     ));

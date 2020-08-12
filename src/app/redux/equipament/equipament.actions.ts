@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Equipament, Status } from './equipament.model';
+import { Equipament, Status } from '../../models/equipament.model';
 
 /**
  * Ação que cria um novo equipamento.

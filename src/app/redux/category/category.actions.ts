@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Category } from './category.model';
+import { Category } from '../../models/category.model';
 
 /**
  * Ação que cria uma nova categoria.

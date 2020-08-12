@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Model } from './model.model';
+import { Model } from '../../models/model.model';
 
 /**
  * Ação que cria um novo modelo.
