@@ -1,0 +1,25 @@
+ul  li{
+    color: grey;
+    font-size: 12px;
+}
+
+ul > li > ul{
+    color: rgb(60,60,60);
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 0px;
+}
+.value-item{
+    padding-left: 5px;
+    font-size: 14px;
+    font-weight: 550;
+    color: rgb(60,60,60);
+}
+
+ul > li > ul > li{
+    font-size: 14px;
+}
+ 
+ul {
+    list-style: none;
+}

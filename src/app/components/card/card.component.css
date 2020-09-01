@@ -1,0 +1,21 @@
+.card {
+    background: #FFFFFF;
+    border: 1px solid #E6E5F2;
+    box-sizing: border-box;
+    border-radius: 28px;
+    padding: 30px;
+}
+
+.card header{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 22px;
+    /* identical to box height, or 137% */
+
+    letter-spacing: 0.16px;
+
+    color: #282D30;
+
+}
