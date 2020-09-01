@@ -1,6 +1,6 @@
 export interface NavLink{
     title: string;
     icon: string;
-    url?: string;
+    url?: string[];
     tip?: string;
 }
