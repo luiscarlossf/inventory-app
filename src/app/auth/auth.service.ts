@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
-import { BackendService } from '../backend/backend.service';
+import { BackendService } from '../services/backend/backend.service';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
