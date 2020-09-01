@@ -1,0 +1,8 @@
+<app-server-cards></app-server-cards>
+<div class="cards-container">
+    <app-card [title]="card.title" 
+              [link]="card.link"
+              *ngFor="let card of cards">
+            <app-card-item [cardItem]="card.cardItem"></app-card-item>
+    </app-card>
+</div>

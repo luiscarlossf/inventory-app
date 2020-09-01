@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, EMPTY, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { catchError, tap, map, retry } from 'rxjs/operators';
 /**
  * Serviço que realiz a comunicação com o back-end do sistema.

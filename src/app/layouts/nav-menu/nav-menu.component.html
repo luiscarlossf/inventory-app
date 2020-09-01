@@ -1,0 +1,19 @@
+<mat-nav-list class="sidenav-list">
+  <a matLine
+    [routerLink]="link.url" 
+    title="{{ link.tip }}" 
+    routerLinkActive="active-link" 
+    *ngFor="let link of links"> 
+    <mat-list-item >
+          <mat-icon>{{ link.icon }}</mat-icon>
+          {{ link.title }}   
+    </mat-list-item>
+  </a>
+  <a class="sidenav-logout" matLine 
+     href="#" title="Deslogar usuário"> 
+    <mat-list-item >
+            <mat-icon>exit_to_app</mat-icon>
+            LOGOUT 
+    </mat-list-item>
+  </a>
+</mat-nav-list>

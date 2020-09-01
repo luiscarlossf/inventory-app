@@ -12,9 +12,9 @@ export class ServerCardsComponent implements OnInit {
 
   constructor() { 
     this.serverCards = [
-      {icon: 'home', amount:1930 ,server_name:'ZENWORKS', url: '#'},
-      {icon: 'home', amount:155 ,server_name:'WSUS', url: '#'},
-      {icon: 'home', amount:290 ,server_name:'TREND', url: '#'},
+      {icon: 'dns', color:'#0054FE', amount:1930 ,server_name:'ZENWORKS', url: '#'},
+      {icon: 'dns', color:'#6EFF4A',amount:155 ,server_name:'WSUS', url: '#'},
+      {icon: 'dns', color: '#FD0C0C', amount:290 ,server_name:'TREND', url: '#'},
     ];
   }
 

@@ -1,0 +1,41 @@
+.server-card{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 208px;
+    height: 100px;
+    background: #FFFFFF;
+    border: 1px solid #E6E5F2;
+    box-sizing: border-box;
+    border-radius: 28px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.card-icon{
+    background-color: rgba(255, 0, 0, 15%);
+    padding: 10px 10px 5px 10px;
+    border-radius: 5px;
+
+}
+.card-description{
+    margin-left: 10px;
+}
+
+.blue{
+    color:blue;
+}
+
+.red{
+    color: red;
+}
+
+.green{
+    color: green;
+}
+
+.server-cards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

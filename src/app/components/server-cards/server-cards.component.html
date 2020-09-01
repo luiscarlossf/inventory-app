@@ -1,0 +1,10 @@
+<div class="server-cards">
+    <div class="server-card" *ngFor="let server of serverCards">
+        <div class="card-icon"> 
+            <mat-icon color="accent">dns</mat-icon>
+        </div>
+        <div class="card-description">
+            <strong>{{server.amount}}</strong><p>no {{server.server_name}}</p>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+.cards-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding-top: 10px;
+}
+
+app-card{
+    min-width: 200px;
+    margin: 10px;
+}
