@@ -1,4 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
+/*Muda modo como a dimensão do bloco é medido.*/
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after{
+    box-sizing: inherit;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: #f9f9f9;
+}
+
+.container{
+    display: flex;
+    flex-flow: column wrap;
+    border: 1px solid rgba(0,0,0,10%);
+    padding: 30px;
+    margin: 10px;
+    border-radius: 15px;
+    background-color: #FFFF;
+  }
+
+.mini-button{
+    display: flex;
+    align-items: center;
+}
+.mini-button button{
+    margin-left: 4px;
+    margin-right: 4px;
+    background: #4B74FF;
+    color: #ffff;
+    border: none;
+    border-radius: 11px;
+    position: relative;
+    bottom: 10px;
+}
