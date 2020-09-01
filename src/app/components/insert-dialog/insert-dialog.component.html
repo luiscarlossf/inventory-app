@@ -1,0 +1,97 @@
+<h2 mat-dialog-title>Inserir novo equipamento</h2>
+<mat-dialog-content>
+    <form [formGroup]="insertForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Patrimônio</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Marca</mat-label>
+            <mat-select>
+                <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Categoria</mat-label>
+            <mat-select>
+                <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Modelo</mat-label>
+            <mat-select>
+                <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Unidade Administrativa</mat-label>
+            <mat-select>
+                <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Andar</mat-label>
+            <mat-select>
+                <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Início da Garantia</mat-label>
+            <input matInput [matDatepicker]="warrantyStartPicker">
+            <mat-datepicker-toggle matSuffix [for]="warrantyStartPicker"></mat-datepicker-toggle>
+            <mat-datepicker #warrantyStartPicker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Fim da Garantia</mat-label>
+            <input matInput [matDatepicker]="warrantyEndPicker">
+            <mat-datepicker-toggle matSuffix [for]="warrantyEndPicker"></mat-datepicker-toggle>
+            <mat-datepicker #warrantyEndPicker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Data de Aquisição</mat-label>
+            <input matInput [matDatepicker]="acquisitionPicker">
+            <mat-datepicker-toggle matSuffix [for]="acquisitionPicker"></mat-datepicker-toggle>
+            <mat-datepicker #acquisitionPicker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Valor de Aquisição</mat-label>
+            <input matInput>
+        </mat-form-field>
+        <br>
+        <mat-checkbox>Política</mat-checkbox>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Status do Zenworks</mat-label>
+            <mat-select>
+                <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Status do TREND</mat-label>
+            <mat-select>
+                <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Status do WSUS</mat-label>
+            <mat-select>
+                <mat-option value="option">Option</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" mat-dialog-close>Cancelar</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Inserir</button>
+</mat-dialog-actions>
