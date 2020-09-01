@@ -1,0 +1,28 @@
+
+<div class="container">
+    <app-filters (filters)="filtrar($event)">Loading filters...</app-filters>
+</div>
+
+<div class="container">
+    <section>
+        <div class="left-description">
+            <h3>Equipamentos</h3>
+            <p>Total de 1377</p>
+        </div>
+        <div class="mini-button">
+            <button mat-flat-button (click)="openInsertDialog()">
+            Adicionar
+            <mat-icon>add</mat-icon>
+            </button>
+            <button mat-flat-button>
+            Imprimir
+            <mat-icon>print</mat-icon>
+            </button>
+            <button mat-flat-button>
+            Exportar
+            <mat-icon>get_app</mat-icon>
+            </button>
+        </div>
+    </section>
+    <app-equipaments-table></app-equipaments-table>
+</div>
