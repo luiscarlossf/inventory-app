@@ -1,24 +1,32 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './pages/home/home.component';
+import { EquipamentsComponent } from './pages/equipaments/equipaments.component';
 import { AuthGuard } from './auth/auth.guard';
-import { AppComponent } from './app.component';
+import { PagesModule } from './pages/pages.module';
 
 
 const routes : Routes = [
     { path: '', 
-      component: AppComponent,
-      //canActivate:[AuthGuard]
+      component: HomeComponent,
+      canActivate:[AuthGuard],
     },
     {
       path: 'home',
       component: HomeComponent,
-      //canActivate: [AuthGuard]
-    }
+      canActivate: [AuthGuard],
+    },
+    {
+      path: 'equipaments',
+      component: EquipamentsComponent,
+      canActivate: [AuthGuard],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, { useHash: true })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
