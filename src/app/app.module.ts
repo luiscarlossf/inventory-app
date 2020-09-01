@@ -3,63 +3,80 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from "./auth/auth.module";
-
 import { AppComponent } from './app.component';
 import { httpInterceptorProviders } from './http-interceptors/index';
-import { BackendService } from './backend/backend.service';
+import { BackendService } from './services/backend/backend.service';
 import { StoreModule } from '@ngrx/store';
 import * as fromUser from './redux/user/user.reducer';
-import { GroupsReducer } from './redux/group/group.reducer';
-import { HomeComponent } from './home/home.component';
+import * as fromBrand from './redux/brand/brand.reducer';
+import * as fromCategory from './redux/category/category.reducer';
+import * as fromComputer from './redux/computer/computer.reducer';
+import * as fromEquipament from './redux/equipament/equipament.reducer';
+import * as fromFloor from './redux/floor/floor.reducer';
+import * as fromGroup from './redux/group/group.reducer';
+import * as fromModel from './redux/model/model.reducer';
+import * as fromUa from './redux/ua/ua.reducer';
 import { UserEffects } from './redux/user/user.effects';
+import { BrandEffects } from './redux/brand/brand.effects';
+import { CategoryEffects } from './redux/category/category.effects';
+import { ComputerEffects } from './redux/computer/computer.effects';
+import { EquipamentEffects } from './redux/equipament/equipament.effects';
+import { FloorEffects } from './redux/floor/floor.effects';
+import { ModelEffects } from './redux/model/model.effects';
+import { UaEffects } from './redux/ua/ua.effects';
 import { APP_BASE_HREF, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatToolbarModule} from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
+import { PagesModule } from '../app/pages/pages.module';
+import { LayoutsModule } from './layouts/layouts.module';
+import { ComponentsModule } from './components/components.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
-import {MatInputModule} from '@angular/material/input';
-import {MatCardModule} from '@angular/material/card';
-import { FormsModule } from '@angular/forms';
-import { SearchBoxComponent } from './search-box/search-box.component';
-import { NavMenuComponent } from './layout/nav-menu/nav-menu.component';
-
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    SearchBoxComponent,
-    NavMenuComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
     AuthModule,
-    StoreModule.forRoot({
-      user: fromUser.reducer,
-      groups: GroupsReducer,
-    }),
-    EffectsModule.forRoot([UserEffects]),
-    BrowserAnimationsModule,
-    LayoutModule,
-    MatToolbarModule,
+    ComponentsModule,
+    LayoutsModule,
+    PagesModule,
+    MatIconModule,
     MatButtonModule,
     MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatInputModule,
-    MatCardModule,
+    StoreModule.forRoot({
+      user: fromUser.reducer,
+      groups: fromGroup.GroupsReducer,
+      brands: fromBrand.reducer,
+      categories: fromCategory.reducer,
+      models: fromModel.reducer,
+      floors: fromFloor.reducer,
+      uas: fromUa.reducer,
+      equipaments: fromEquipament.reducer,
+      computers: fromComputer.reducer,
+    }),
+    EffectsModule.forRoot([
+      UserEffects,
+      BrandEffects,
+      CategoryEffects,
+      ComputerEffects,
+      EquipamentEffects,
+      FloorEffects,
+      ModelEffects,
+      UaEffects,
+    ]),
   ],
   providers: [
     BackendService,
     httpInterceptorProviders,
     { provide: LocationStrategy, useClass: HashLocationStrategy},
-    { provide: APP_BASE_HREF, useValue: '/' }
+    { provide: APP_BASE_HREF, useValue: '/' },
   ],
   bootstrap: [AppComponent]
 })
