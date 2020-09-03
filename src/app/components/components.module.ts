@@ -21,6 +21,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { CardItemComponent } from './card-item/card-item.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     FormsModule,
     MatDividerModule,
     MatButtonToggleModule,
+    MatSortModule,
   ]
 })
 export class ComponentsModule { }
