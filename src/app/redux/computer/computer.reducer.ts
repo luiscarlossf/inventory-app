@@ -3,6 +3,8 @@ import * as ComputerActions from './computer.actions';
 import { Computer } from  '../../models/computer.model';
 import { produce } from 'immer';
 import { AppState } from '../../app.state';
+import { Equipament } from 'src/app/models/equipament.model';
+import { computeDecimalDigest } from '@angular/compiler/src/i18n/digest';
 
 /**
  * @interface
@@ -19,7 +21,7 @@ export interface ComputerState{
  * Estado inicial para computers
  */
 const initialState: ComputerState = {
-    allComputers: null,
+    allComputers: new Map<string, Computer>(),
     error: null,
 };
 
@@ -98,10 +100,60 @@ const initialState: ComputerState = {
  export const selectComputer = (state: AppState) => state.computers;
 
 /**
- * Retorna todas os computadores.
+ * Retorna o map de todos os computadores.
  */
 export const selectAllComputers = createSelector(
      selectComputer,
      (computers: ComputerState) => computers.allComputers,
+);
+/**
+ * Retorna o aray de todos os computadores
+ */
+export const selectComputers = createSelector(
+    selectAllComputers,
+    (allComputers: Map<string, Computer>) => [...allComputers.values()],
+);
+/**
+ * Retorna o array de computadores no WSUS
+ */
+export const selectWSUS = createSelector(
+    selectComputers,
+    (computers: Computer[]) => computers.filter(c => c.status_wsus == true),
+);
+/**
+ * Retorna o array de computadores no Zenworks
+ */
+export const selectZENWORKS = createSelector(
+    selectComputers,
+    (computers: Computer[]) => computers.filter(c => c.status_zenworks == true),
+);
+/**
+ * Retorna o array de computadores no Trend
+ */
+export const selectTREND = createSelector(
+    selectComputers,
+    (computers: Computer[]) => computers.filter(c => c.status_trend == true),
+);
+
+/**
+ * Retorna a quantidade de computadores no WSUS
+ */
+export const getCountWSUS = createSelector(
+    selectWSUS,
+    (computers: Computer[]) => computers.length,
+);
+/**
+ * Retorna a quantidade de computadores no Zenworks
+ */
+export const getCountZENWORKS = createSelector(
+    selectZENWORKS,
+    (computers: Computer[]) => computers.length,
+);
+/**
+ * Retorna a quantidade de computadores no Trend
+ */
+export const getCountTREND = createSelector(
+    selectTREND,
+    (computers: Computer[]) => computers.length,
 );
  
