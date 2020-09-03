@@ -1,10 +1,41 @@
 <div class="server-cards">
+    <!--
     <div class="server-card" *ngFor="let server of serverCards">
-        <div class="card-icon"> 
-            <mat-icon color="accent">dns</mat-icon>
+        <div class="{{server.color}} card-icon"> 
+            <mat-icon>dns</mat-icon>
         </div>
         <div class="card-description">
             <strong>{{server.amount}}</strong><p>no {{server.server_name}}</p>
         </div>
+    </div>-->
+    <!--ZENWORKS-->
+    <div class="server-card">
+        <div class="blue card-icon"> 
+            <mat-icon>dns</mat-icon>
+        </div>
+        <div class="card-description">
+            <strong>{{ countZENWORKS$ | async}}</strong><p>no ZENWORKS</p>
+        </div>
     </div>
+    <!---->
+    <!--WSUS-->
+    <div class="server-card">
+        <div class="green card-icon"> 
+            <mat-icon>dns</mat-icon>
+        </div>
+        <div class="card-description">
+            <strong>{{ countWSUS$ | async}}</strong><p>no WSUS</p>
+        </div>
+    </div>
+    <!---->
+    <!--TREND-->
+    <div class="server-card">
+        <div class="red card-icon"> 
+            <mat-icon>dns</mat-icon>
+        </div>
+        <div class="card-description">
+            <strong>{{ countTREND$ | async}}</strong><p>no TREND</p>
+        </div>
+    </div>
+    <!---->
 </div>

@@ -13,24 +13,25 @@
 }
 
 .card-icon{
-    background-color: rgba(255, 0, 0, 15%);
     padding: 10px 10px 5px 10px;
     border-radius: 5px;
-
 }
 .card-description{
     margin-left: 10px;
 }
 
 .blue{
+    background-color: rgba(0, 0, 255, 15%); 
     color:blue;
 }
 
 .red{
+    background-color: rgba(255, 0, 0, 15%);
     color: red;
 }
 
 .green{
+    background-color: rgba(0, 255, 0, 15%);
     color: green;
 }
 
