@@ -8,6 +8,7 @@ import { FiltersComponent } from '../../components/filters/filters.component';
 import { EquipamentsTableComponent } from '../../components/equipaments-table/equipaments-table.component';
 import { MatDialog } from '@angular/material/dialog';
 import { InsertDialogComponent } from '../../components/insert-dialog/insert-dialog.component';
+import { Equipament } from 'src/app/models/equipament.model';
 
 @Component({
   selector: 'app-equipaments',
@@ -15,7 +16,9 @@ import { InsertDialogComponent } from '../../components/insert-dialog/insert-dia
   styleUrls: ['./equipaments.component.css']
 })
 export class EquipamentsComponent implements OnInit {
-  equipaments$: Observable<fromEquipament.EquipamentState>;
+  equipamentsState$: Observable<fromEquipament.EquipamentState>;
+
+  equipaments$: Observable<Equipament[]>;
   
   @ViewChild(FiltersComponent, {static: true}) 
   private filtersComponent: FiltersComponent;
@@ -24,7 +27,8 @@ export class EquipamentsComponent implements OnInit {
   private equipamentTable: EquipamentsTableComponent;
 
   constructor(private readonly store: Store<AppState>, public dialog: MatDialog) { 
-    this.equipaments$ = this.store.pipe(select('equipaments'));
+    this.equipamentsState$ = this.store.pipe(select('equipaments'));
+    this.equipaments$ = this.store.pipe(select(fromEquipament.selectEquipaments));
   }
 
   openInsertDialog(){
@@ -40,6 +44,7 @@ export class EquipamentsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
   }
 
 }
