@@ -52,10 +52,12 @@ export class ComputerEffects{
                 results.forEach(element => {
                     computers.set(element.url, element);
                 });
+                console.log("Carregando computadores...");
                 return ComputerActions.loadComputersSuccess({computers});
             }))
         ),
         catchError( error => {
+            console.log("Falha no carregamento dos computadores...");
             return of(ComputerActions.loadComputersFailure({error}));
         })
     ));
