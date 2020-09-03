@@ -16,6 +16,14 @@ export interface EquipamentState{
 }
 
 /**
+ * @interface
+ * Propriedades dos seletores
+ */
+export interface PropsSelector{
+    policy?: boolean;
+}
+
+/**
  * Estado inicial para equipaments
  */
 const initialState: EquipamentState = {
@@ -163,86 +171,42 @@ export const selectTrash = createSelector(
     (eqts: Equipament[]) => eqts.filter(eqt => eqt.status == Status.Sucata),
 );
 /**
- * Retorna todos os equipamentos fora da política e com defeito.
+ * Retorna todos os equipamentos fora ou dentro da política e com defeito.
  */
-export const selectOutDonation= createSelector(
+export const selectPolicyDonation= createSelector(
     selectTrash,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == false),
+    (eqts: Equipament[], props:PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
 );
  /**
- * Retorna todos os equipamentos fora da política disponíveis para uso.
+ * Retorna todos os equipamentos fora ou dentro da política disponíveis para uso.
  */
-export const selectOutShipyard = createSelector(
+export const selectPolicyShipyard = createSelector(
     selectShipyard,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == false),
+    (eqts: Equipament[], props:PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
 );
  /**
- * Retorna todos os equipamentos fora da política sendo usado pela PR/PI.
+ * Retorna todos os equipamentos fora ou dentro da política sendo usado pela PR/PI.
  */
-export const selectOutUse = createSelector(
+export const selectPolicyUse = createSelector(
     selectUse,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == false),
+    (eqts: Equipament[], props: PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
 );
 /**
- * Retorna todos os equipamentos fora da política e sem uso (Sucata).
+ * Retorna todos os equipamentos fora  ou dentro da política e sem uso (Sucata).
  */
-export const selectOutTrash = createSelector(
+export const selectPolicyTrash = createSelector(
     selectTrash,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == false),
-);
-
-
-/**
- * Retorna todos os equipamentos dentro da política e com defeito.
- */
-export const selectInDonation = createSelector(
-    selectDonation,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == true),
+    (eqts: Equipament[], props: PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
 );
 
  /**
- * Retorna todos os equipamentos dentro da política disponíveis para uso eventual.
+ * Retorna todos os equipamentos dentro ou fora da política e sem uso, novos na caixa.
  */
-export const selectInShipyard = createSelector(
-    selectShipyard,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == true),
-);
- /**
- * Retorna todos os equipamentos dentro da política e sem uso, novos na caixa.
- */
-export const selectInNew = createSelector(
+export const selectPolicyNew = createSelector(
     selectNew,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == true),
+    (eqts: Equipament[], props: PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
 );
- /**
- * Retorna todos os equipamentos dentro da política em uso.
- */
-export const selectInUse = createSelector(
-    selectUse,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == true),
-);
-/**
- * Retorna todos os equipamentos dentro da política e sem uso (Sucata).
- */ 
-export const selectInTrash = createSelector(
-    selectTrash,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == true),
-);
- /**
-  * Retorna a quantidade de equipamentos utilizáveis
-  */
-export const getCountUseful = createSelector(
-    selectOutUse,
-    selectOutShipyard,
-    selectInShipyard,
-    selectInUse,
-    selectInNew,
-    ( e1: Equipament[],
-      e2: Equipament[],
-      e3: Equipament[],
-      e4: Equipament[],
-      e5: Equipament[] ) => e1.length + e2.length + e3.length + e4.length + e5.length,
-);
+
 
 /**
  * Retorna a quantidade de equipamentos em uso.
@@ -295,4 +259,16 @@ export const getCountPRPI = createSelector(
     getCountShipyard,
     getCountTrash,
     (c1:number, c2:number,c3:number,c4:number,c5:number) => (c1 + c2 + c3 + c4 + c5),
+);
+
+ /**
+  * Retorna a quantidade de equipamentos utilizáveis
+  */
+ export const getCountUseful = createSelector(
+    getCountUse,
+    getCountShipyard,
+    getCountNew,
+    ( cont1: number,
+      cont2: number,
+      cont3: number) => cont1 + cont2 + cont3,
 );
