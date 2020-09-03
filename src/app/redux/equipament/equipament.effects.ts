@@ -47,7 +47,7 @@ export class EquipamentEffects{
         ofType(EquipamentActions.loadEquipaments),
         switchMap( action => this.api.listAll<Equipament>('equipaments')
             .pipe( map(response => {
-                let results = response.body["results"];
+                let results = response.body["results"] ? response.body["results"]: response.body;
                 let equipaments = new Map();
                 results.forEach(element => {
                     equipaments.set(element.url, element);
