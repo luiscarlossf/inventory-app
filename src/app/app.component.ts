@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
+import { AppState } from './app.state';
 import { User } from './models/user.model';
+import * as EquipamentActions from './redux/equipament/equipament.actions';
+import * as ComputerActions from './redux/computer/computer.actions';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +16,7 @@ export class AppComponent {
   title = 'inventory-app';
   user: User;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private readonly store: Store<AppState>) {
     iconRegistry.addSvgIcon(
       'menu-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/menu/menu-icon@1px.svg'));
@@ -37,6 +41,9 @@ export class AppComponent {
     iconRegistry.addSvgIcon(
       'chart',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/chart-white@1px.svg'));
+    //Carrega os equipamentos e computadores armazenados no servidor.
+    this.store.dispatch(EquipamentActions.loadEquipaments());
+    this.store.dispatch(ComputerActions.loadComputers());
   }
 
   doSearch(query: string){}
