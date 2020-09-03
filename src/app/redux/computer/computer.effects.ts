@@ -47,7 +47,7 @@ export class ComputerEffects{
         ofType(ComputerActions.loadComputers),
         switchMap( action => this.api.listAll<Computer>('computers')
             .pipe( map(response => {
-                let results = response.body["results"];
+                let results = response.body["results"]? response.body["results"]:response.body;
                 let computers = new Map();
                 results.forEach(element => {
                     computers.set(element.url, element);
