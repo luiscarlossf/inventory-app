@@ -120,21 +120,7 @@ export const selectEquipaments = createSelector(
     selectAllEquipaments,
     (allEquipaments: Map<string, Equipament>) => [...allEquipaments.values()],
 );
-/**
- * Retorna todos os equipamentos dentro da política
- */
-export const selectInPolicy = createSelector(
-    selectEquipaments,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy === true),
-);
 
-/**
- * Retorna todos os equipamentos fora da política.
- */
-export const selectOutPolicy = createSelector(
-    selectEquipaments,
-    (eqts: Equipament[]) => eqts.filter(eqt => eqt.policy == false),
-);
 /**
  * Retorna todos os equipamentos em uso
  */
@@ -170,43 +156,6 @@ export const selectTrash = createSelector(
     selectEquipaments,
     (eqts: Equipament[]) => eqts.filter(eqt => eqt.status == Status.Sucata),
 );
-/**
- * Retorna todos os equipamentos fora ou dentro da política e com defeito.
- */
-export const selectPolicyDonation= createSelector(
-    selectTrash,
-    (eqts: Equipament[], props:PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
-);
- /**
- * Retorna todos os equipamentos fora ou dentro da política disponíveis para uso.
- */
-export const selectPolicyShipyard = createSelector(
-    selectShipyard,
-    (eqts: Equipament[], props:PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
-);
- /**
- * Retorna todos os equipamentos fora ou dentro da política sendo usado pela PR/PI.
- */
-export const selectPolicyUse = createSelector(
-    selectUse,
-    (eqts: Equipament[], props: PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
-);
-/**
- * Retorna todos os equipamentos fora  ou dentro da política e sem uso (Sucata).
- */
-export const selectPolicyTrash = createSelector(
-    selectTrash,
-    (eqts: Equipament[], props: PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
-);
-
- /**
- * Retorna todos os equipamentos dentro ou fora da política e sem uso, novos na caixa.
- */
-export const selectPolicyNew = createSelector(
-    selectNew,
-    (eqts: Equipament[], props: PropsSelector) => eqts.filter(eqt => eqt.policy == props.policy),
-);
-
 
 /**
  * Retorna a quantidade de equipamentos em uso.
@@ -216,6 +165,7 @@ export const getCountUse = createSelector(
     (eqts: Equipament[]) => eqts.length,
 
 );
+
 /**
  * Retorna a qauntidade de equipamentos para doação
  */
@@ -224,6 +174,8 @@ export const getCountDonation = createSelector(
     (eqts: Equipament[]) => eqts.length,
 
 );
+
+
 /**
  * Retorna a quantidade de equipamentos novos na caixa.
  */
@@ -232,6 +184,7 @@ export const getCountNew = createSelector(
     (eqts: Equipament[]) => eqts.length,
 
 );
+
 /**
  * Retorna a quantidade de equipamentos no estaleiro.
  */
@@ -240,6 +193,8 @@ export const getCountShipyard = createSelector(
     (eqts: Equipament[]) => eqts.length,
 
 );
+
+
  /**
  * Retorna a quantidade de equipamentos na sucata/doação.
  */
@@ -249,10 +204,11 @@ export const getCountTrash = createSelector(
 
 );
 
+
 /**
  * Retorna a quantidade de equipamentos na PR/PI
  */
-export const getCountPRPI = createSelector(
+export const getCountTotalPRPI = createSelector(
     getCountUse,
     getCountDonation,
     getCountNew,
@@ -271,4 +227,26 @@ export const getCountPRPI = createSelector(
     ( cont1: number,
       cont2: number,
       cont3: number) => cont1 + cont2 + cont3,
+);
+
+
+export const generalStatics = createSelector(
+    getCountUseful,
+    getCountTotalPRPI,
+    getCountUse,
+    getCountDonation,
+    getCountNew,
+    getCountShipyard,
+    getCountTrash,
+    (ul:number, tl:number,u:number,d:number, n:number, s:number, t:number) =>{
+        let statics = new Map<string, number>();
+        statics.set('Equipamentos utilizáveis', ul);
+        statics.set('Total de equipamentos na PR/PI', tl);
+        statics.set('Equipamentos em uso', u);
+        statics.set('Equipamentos para doação', d);
+        statics.set('Equipamentos novos na caixa', n);
+        statics.set('Equipamentos no estaleiro', s);
+        statics.set('Equipamentos sucata/doação', t);
+        return statics;
+    },
 );
