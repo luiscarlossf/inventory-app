@@ -1,5 +1,11 @@
 
-export enum Status {'Usado', 'Almoxarifado', 'Sucata', 'Doação', 'Estaleiro'};
+export enum Status {
+    Usado="Usado", 
+    Almoxarifado="Almoxarifado", 
+    Sucata="Sucata", 
+    Doação="Doação", 
+    Estaleiro="Estaleiro"
+};
 
 export interface Equipament{
     url?: string;
@@ -8,7 +14,6 @@ export interface Equipament{
     warranty_end?: Date;
     acquisition_date?: Date;
     acquisition_value?: number;
-    policy?:boolean;
     status: Status;
     /**@type {string} Url da marca do equipamento. */
     brand?: string;
