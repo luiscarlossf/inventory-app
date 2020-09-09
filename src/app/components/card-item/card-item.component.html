@@ -1,7 +1,7 @@
 <div class="card-item">
     <h3 *ngIf="cardItem.title">{{ cardItem.title }}</h3>
     <ul>
-        <li *ngFor="let prop of cardItem.properties">
+        <li *ngFor="let prop of cardItem.properties | keyvalue">
             {{prop.key}} :<span class="value-item">{{prop.value}}</span>
             <!--<ul>
                 <li>{{prop.value}}</li>
