@@ -19,7 +19,7 @@ export interface CategoryState{
  * Estado inicial para categories
  */
 const initialState: CategoryState = {
-    allCategories: null,
+    allCategories: new Map<string, Category>(),
     error: null,
 };
 

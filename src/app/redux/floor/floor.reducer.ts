@@ -19,7 +19,7 @@ export interface FloorState{
  * Estado inicial para floors
  */
 const initialState: FloorState = {
-    allFloors: null,
+    allFloors: new Map<string, Floor>(),
     error: null,
 };
 

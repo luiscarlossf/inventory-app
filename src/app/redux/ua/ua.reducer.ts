@@ -19,7 +19,7 @@ export interface UaState{
  * Estado inicial para uas
  */
 const initialState: UaState = {
-    allUas: null,
+    allUas: new Map<string, Ua>(),
     error: null,
 };
 

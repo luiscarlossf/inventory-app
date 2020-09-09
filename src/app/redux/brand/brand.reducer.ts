@@ -19,7 +19,7 @@ export interface BrandState{
  * Estado inicial para brands
  */
 const initialState: BrandState = {
-    allBrands: null,
+    allBrands: new Map<string, Brand>(),
     error: null,
 };
 

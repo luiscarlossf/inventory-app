@@ -19,7 +19,7 @@ export interface ModelState{
  * Estado inicial para models
  */
 const initialState: ModelState = {
-    allModels: null,
+    allModels: new Map<string, Model>(),
     error: null,
 };
 
