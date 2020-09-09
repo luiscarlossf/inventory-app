@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { AppState } from 'src/app/app.state';
 import { CardItem } from 'src/app/models/card-item.model';
+import * as fromEquipament from '../../redux/equipament/equipament.reducer';
+import * as fromComputer from '../../redux/computer/computer.reducer';
 
 @Component({
   selector: 'app-home',
@@ -7,68 +12,41 @@ import { CardItem } from 'src/app/models/card-item.model';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  policyOutStatics$: Observable<any>;
+  policyInStatics$: Observable<any>;
+  generalStatics$: Observable<any>;
   cards: any[] = [{
     title:'Equipamentos fora da política', 
     link:'',
-    cardItem: {properties:[
-      {key:"Com defeito (Doação)", value: 0},
-      {key:"Disponível para uso eventual", value: 3},
-      {key:"Em uso pela PR/PI", value: 22},
-      {key:"Sem uso (Sucata para retirada de peça)", value: 0},
-    ]},
+    cardItem: {properties:undefined},
   }, 
   {
     title:'Equipamentos dentro da política', 
     link:'',
-    cardItem: {properties:[
-      {key:"Com defeito (Doação)", value: 1},
-      {key:"Disponível para uso eventual", value: 12},
-      {key:"Sem uso (Novos na caixa)", value: 4},
-      {key:"Em uso", value: 205},
-      {key:"Sem uso (Sucata para retirada de peça)", value: 22},
-    ]},
+    cardItem: {properties:undefined},
   },
   {
     title:'Números sobre os equipamentos', 
     link:'',
-    cardItem: {properties:[
-      {key:"Equipamentos utilizáveis", value: 246},
-      {key:"Total de equipamentos na PR/PI", value: 269},
-      {key:"Equipamentos em uso", value: 227},
-      {key:"Equipamenots para doação (Com defeito)", value: 1},
-      {key:"Equipamentos novos na caixa", value: 4},
-      {key:"Equipamentos no estaleiro", value: 15},
-      {key:"Equipamentos sucata/doação", value: 22},
-    ]},
+    cardItem: {properties: undefined},
   }];
-  cardItems: CardItem[] = [
-    {properties:[
-      {key:"Com defeito - para doação", value: 0},
-      {key:"Disponível para uso eventual", value: 3},
-      {key:"Em uso pela PR/PI", value: 22},
-      {key:"Sem uso - Sucata para retirada de peça", value: 0},
-    ]},
-    {properties:[
-      {key:"Com defeito - para doação", value: 1},
-      {key:"Disponível para uso eventual", value: 12},
-      {key:"Sem uso - novos na caixa", value: 4},
-      {key:"Em uso", value: 205},
-      {key:"Sem uso - Sucata para retirada de peça", value: 22},
-    ]},
-    {properties:[
-      {key:"Equipamentos utilizáveis", value: 246},
-      {key:"Total de equipamentos na PR/PI", value: 269},
-      {key:"Equipamentos em uso", value: 227},
-      {key:"Equipamenots para doação (con defeito)", value: 1},
-      {key:"Equipamentos novos na caixa", value: 4},
-      {key:"Equipamentos no estaleiro", value: 15},
-      {key:"Equipamentos sucata/doação", value: 22},
-    ]},
-  ];
 
-  constructor() { }
+  constructor(private readonly store: Store<AppState>) {
+    this.policyOutStatics$ = this.store.pipe(select(fromComputer.policyStatics, {policy:false}));
+    this.policyInStatics$ = this.store.pipe(select(fromComputer.policyStatics, {policy:true}));
+    this.generalStatics$ = this.store.pipe(select(fromComputer.generalStatics));
+  }
 
   ngOnInit(): void {
+    this.policyOutStatics$.subscribe(s =>{
+      this.cards[0].cardItem.properties = s;
+    });
+    this.policyInStatics$.subscribe(s =>{
+      this.cards[1].cardItem.properties = s;
+    });
+    this.generalStatics$.subscribe(s =>{
+      this.cards[2].cardItem.properties = s;
+    });
   }
 
 }
