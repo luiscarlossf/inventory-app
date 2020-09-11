@@ -9,11 +9,19 @@ import { Equipament, Status } from 'src/app/models/equipament.model';
 import { AppState } from 'src/app/app.state';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-equipaments-table',
   templateUrl: './equipaments-table.component.html',
-  styleUrls: ['./equipaments-table.component.css']
+  styleUrls: ['./equipaments-table.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight:'0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class EquipamentsTableComponent implements OnInit {
   dataSource : MatTableDataSource<Equipament>;
@@ -24,6 +32,7 @@ export class EquipamentsTableComponent implements OnInit {
   selection = new SelectionModel<Equipament>(this.allowMultiSelect, this.initialSelection);
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  expandedElement: Equipament | null;
 
   constructor(private readonly store: Store<AppState>){
     this.dataSource = new MatTableDataSource<Equipament>();
