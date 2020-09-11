@@ -7,12 +7,20 @@
     <section>
         <div class="left-description">
             <h3>Equipamentos</h3>
-            <p>Total de 1377</p>
+            <!--<p>Total de 1377</p>-->
         </div>
         <div class="mini-button">
             <button mat-flat-button (click)="openInsertDialog()">
             Adicionar
             <mat-icon>add</mat-icon>
+            </button>
+            <button mat-flat-button (click)="alterStatus()">
+            Alterar Status
+            <mat-icon>flag</mat-icon>
+            </button>
+            <button mat-flat-button (click)='alterServerStatus()'>
+            Alterar Server Status
+            <mat-icon>dns</mat-icon>
             </button>
             <button mat-flat-button>
             Imprimir
