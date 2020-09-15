@@ -35,7 +35,7 @@ export class CategoryEffects{
         ofType(CategoryActions.loadCategories),
         switchMap( action => this.api.listAll<Category>('categories')
             .pipe( map(response => {
-                let results = response.body["results"];
+                let results = response.body["results"]? response.body["results"]:response.body;
                 let categories = new Map();
                 results.forEach(element => {
                     categories.set(element.url, element);

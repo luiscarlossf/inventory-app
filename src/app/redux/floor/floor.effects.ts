@@ -35,7 +35,7 @@ export class FloorEffects{
         ofType(FloorActions.loadFloors),
         switchMap( action => this.api.listAll<Floor>('floors')
             .pipe( map(response => {
-                let results = response.body["results"];
+                let results = response.body["results"]? response.body["results"]:response.body;
                 let floors = new Map();
                 results.forEach(element => {
                     floors.set(element.url, element);

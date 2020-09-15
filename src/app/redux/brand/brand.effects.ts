@@ -35,7 +35,7 @@ export class BrandEffects{
         ofType(BrandActions.loadBrands),
         switchMap( action => this.api.listAll<Brand>('brands')
             .pipe( map(response => {
-                let results = response.body["results"];
+                let results = response.body["results"]? response.body["results"]:response.body;
                 let brands = new Map();
                 results.forEach(element => {
                     brands.set(element.url, element);

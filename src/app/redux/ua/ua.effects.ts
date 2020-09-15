@@ -35,7 +35,7 @@ export class UaEffects{
         ofType(UaActions.loadUas),
         switchMap( action => this.api.listAll<Ua>('uas')
             .pipe( map(response => {
-                let results = response.body["results"];
+                let results = response.body["results"]? response.body["results"]:response.body;
                 let uas = new Map();
                 results.forEach(element => {
                     uas.set(element.url, element);

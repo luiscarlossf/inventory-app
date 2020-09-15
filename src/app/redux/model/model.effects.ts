@@ -35,7 +35,7 @@ export class ModelEffects{
         ofType(ModelActions.loadModels),
         switchMap( action => this.api.listAll<Model>('models')
             .pipe( map(response => {
-                let results = response.body["results"];
+                let results = response.body["results"]? response.body["results"]:response.body;
                 let models = new Map();
                 results.forEach(element => {
                     models.set(element.url, element);
