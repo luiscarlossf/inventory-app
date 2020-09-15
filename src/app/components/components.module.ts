@@ -22,6 +22,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { CardItemComponent } from './card-item/card-item.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSortModule } from '@angular/material/sort';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatSortModule } from '@angular/material/sort';
     CardItemComponent,
   ],
   imports: [
+    PipesModule,
     CommonModule,
     MatIconModule,
     MatFormFieldModule,
