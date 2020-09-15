@@ -6,6 +6,11 @@ import { AppState } from './app.state';
 import { User } from './models/user.model';
 import * as EquipamentActions from './redux/equipament/equipament.actions';
 import * as ComputerActions from './redux/computer/computer.actions';
+import * as BrandActions from './redux/brand/brand.actions';
+import * as CategoryActions from './redux/category/category.actions';
+import * as FloorActions from './redux/floor/floor.actions';
+import * as ModelActions from './redux/model/model.actions';
+import * as UaActions from './redux/ua/ua.actions';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +20,7 @@ import * as ComputerActions from './redux/computer/computer.actions';
 export class AppComponent {
   title = 'inventory-app';
   user: User;
+  lastUpdate: number;
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private readonly store: Store<AppState>) {
     iconRegistry.addSvgIcon(
@@ -42,8 +48,14 @@ export class AppComponent {
       'chart',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/chart-white@1px.svg'));
     //Carrega os equipamentos e computadores armazenados no servidor.
+    this.store.dispatch(BrandActions.loadBrands());
+    this.store.dispatch(CategoryActions.loadCategories());
+    this.store.dispatch(FloorActions.loadFloors());
+    this.store.dispatch(ModelActions.loadModels());
+    this.store.dispatch(UaActions.loadUas());
     this.store.dispatch(EquipamentActions.loadEquipaments());
     this.store.dispatch(ComputerActions.loadComputers());
+    this.lastUpdate = Date.now();
   }
 
   doSearch(query: string){}
