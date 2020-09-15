@@ -104,4 +104,11 @@ export const selectAllBrands = createSelector(
      selectBrand,
      (brands: BrandState) => brands.allBrands,
 );
- 
+
+/**
+ * Retorna uma marca especificada pelo o identificador.
+ */
+export const selectBrandByKey= createSelector(
+    selectAllBrands,
+    (brands: Map<string, Brand>, props: any) => brands.get(props.key),
+);

@@ -104,3 +104,11 @@ export const selectAllUas = createSelector(
      selectUa,
      (uas: UaState) => uas.allUas,
 );
+
+/**
+ * Retorna uma UA especificada pelo o identificador.
+ */
+export const selectUaByKey= createSelector(
+    selectAllUas,
+    (uas: Map<string, Ua>, props: any) => uas.get(props.key),
+);

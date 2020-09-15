@@ -104,4 +104,12 @@ export const selectAllFloors = createSelector(
      selectFloor,
      (floors: FloorState) => floors.allFloors,
 );
+
+/**
+ * Retorna um andar especificada pelo o identificador.
+ */
+export const selectFloorByKey= createSelector(
+    selectAllFloors,
+    (floors: Map<string, Floor>, props: any) => floors.get(props.key),
+);
  

@@ -104,4 +104,11 @@ export const selectAllCategories = createSelector(
      selectCategory,
      (categories: CategoryState) => categories.allCategories,
 );
- 
+
+/**
+ * Retorna uma categoria especificada pelo o identificador.
+ */
+export const selectCategoryByKey= createSelector(
+    selectAllCategories,
+    (categories: Map<string, Category>, props: any) => categories.get(props.key),
+);

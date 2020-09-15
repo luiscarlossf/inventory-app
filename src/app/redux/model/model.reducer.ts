@@ -104,4 +104,12 @@ export const selectAllModels = createSelector(
      selectModel,
      (models: ModelState) => models.allModels,
 );
+
+/**
+ * Retorna um modelo especificado pelo o identificador.
+ */
+export const selectModelByKey= createSelector(
+    selectAllModels,
+    (models: Map<string, Model>, props: any) => models.get(props.key),
+);
  
