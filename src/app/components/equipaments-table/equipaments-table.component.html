@@ -28,27 +28,27 @@
       <!--Coluna Brand-->
       <ng-container matColumnDef="brand" >
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Marca</th>
-        <td mat-cell *matCellDef="let element">{{ element.brand }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.brand | brand}}</td>
       </ng-container>
       <!--Coluna Category-->
       <ng-container matColumnDef="category">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoria</th>
-        <td mat-cell *matCellDef="let element">{{ element.category }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.category | category}}</td>
       </ng-container>
       <!--Coluna Model-->
       <ng-container matColumnDef="model">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Modelo</th>
-        <td mat-cell *matCellDef="let element">{{ element.model }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.model | model}}</td>
       </ng-container>
       <!--Coluna Ua-->
       <ng-container matColumnDef="ua">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Unidade Administrativa</th>
-        <td mat-cell *matCellDef="let element">{{ element.ua }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.ua | ua}}</td>
       </ng-container>
       <!--Coluna Floor-->
       <ng-container matColumnDef="floor">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Andar</th>
-        <td mat-cell *matCellDef="let element">{{ element.floor }}</td>
+        <td mat-cell *matCellDef="let element">{{ element.floor | floor}}</td>
       </ng-container>
       <!--Coluna Status-->
       <ng-container matColumnDef="status">
