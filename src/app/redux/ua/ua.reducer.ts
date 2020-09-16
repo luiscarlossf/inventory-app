@@ -112,3 +112,11 @@ export const selectUaByKey= createSelector(
     selectAllUas,
     (uas: Map<string, Ua>, props: any) => uas.get(props.key),
 );
+
+/**
+ * Retorna os IDs
+ */
+export const selectAllIDs = createSelector(
+    selectAllUas,
+    (uas: Map<string, Ua>) => [...uas.keys()],
+);

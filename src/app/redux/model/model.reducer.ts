@@ -112,4 +112,11 @@ export const selectModelByKey= createSelector(
     selectAllModels,
     (models: Map<string, Model>, props: any) => models.get(props.key),
 );
- 
+
+/**
+ * Retorna os IDs
+ */
+export const selectAllIDs = createSelector(
+    selectAllModels,
+    (models: Map<string, Model>) => [...models.keys()],
+);

@@ -112,3 +112,11 @@ export const selectBrandByKey= createSelector(
     selectAllBrands,
     (brands: Map<string, Brand>, props: any) => brands.get(props.key),
 );
+
+/**
+ * Retorna os IDs
+ */
+export const selectAllIDs = createSelector(
+    selectAllBrands,
+    (brands: Map<string, Brand>) => [...brands.keys()],
+);

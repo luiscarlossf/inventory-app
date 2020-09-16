@@ -112,3 +112,11 @@ export const selectCategoryByKey= createSelector(
     selectAllCategories,
     (categories: Map<string, Category>, props: any) => categories.get(props.key),
 );
+
+/**
+ * Retorna os IDs
+ */
+export const selectAllIDs = createSelector(
+    selectAllCategories,
+    (categories: Map<string, Category>) => [...categories.keys()],
+);

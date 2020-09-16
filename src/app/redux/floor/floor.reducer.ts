@@ -112,4 +112,11 @@ export const selectFloorByKey= createSelector(
     selectAllFloors,
     (floors: Map<string, Floor>, props: any) => floors.get(props.key),
 );
- 
+
+/**
+ * Retorna os IDs
+ */
+export const selectAllIDs = createSelector(
+    selectAllFloors,
+    (floors: Map<string, Floor>) => [...floors.keys()],
+);
