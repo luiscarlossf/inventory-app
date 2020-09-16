@@ -23,6 +23,8 @@ import { CardItemComponent } from './card-item/card-item.component';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { PipesModule } from '../pipes/pipes.module';
+import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { PipesModule } from '../pipes/pipes.module';
     FiltersComponent,
     SearchBoxComponent,
     CardItemComponent,
+    EditDialogComponent,
+    DeleteDialogComponent,
   ],
   exports: [
     InsertDialogComponent,
@@ -42,6 +46,11 @@ import { PipesModule } from '../pipes/pipes.module';
     FiltersComponent,
     SearchBoxComponent,
     CardItemComponent,
+  ],
+  entryComponents: [
+    EditDialogComponent,
+    InsertDialogComponent,
+    DeleteDialogComponent,
   ],
   imports: [
     PipesModule,
