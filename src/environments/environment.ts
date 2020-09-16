@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://10.0.0.107:8000/'
+  apiUrl: 'http://localhost:8000/',
+  status: ['Almoxarifado', 'Doação', 'Sucata', 'Usado'],
+  policies: ['Fora da política', 'Dentro da política'],
+  servers_options: ['Incluido', 'Fora', 'Sem registro'],
 };
 
 /*
