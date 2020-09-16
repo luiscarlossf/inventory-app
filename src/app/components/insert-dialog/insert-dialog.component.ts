@@ -18,7 +18,7 @@ export class InsertDialogComponent implements OnInit {
       'category': [''],
       'model': [''],
       'ua': [''],
-      'andar': [''],
+      'floor': [''],
       'warranty_start': [''],
       'warranty_end': [''],
       'acquisition_date': [''],
