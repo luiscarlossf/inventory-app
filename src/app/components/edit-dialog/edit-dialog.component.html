@@ -1,0 +1,107 @@
+<h2 mat-dialog-title>Editar equipamento</h2>
+<mat-dialog-content>
+    <form [formGroup]="editForm">
+        <mat-form-field appearance="fill">
+            <mat-label>Patrimônio</mat-label>
+            <input matInput [formControl]="editForm.controls['patrimony']"> 
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Marca</mat-label>
+            <mat-select [formControl]="editForm.controls['brand']" >
+                <mat-option *ngFor="let brandID of brands$ | async" [value]="brandID">{{brandID|brand}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Categoria</mat-label>
+            <mat-select [formControl]="editForm.controls['category']">
+                <mat-option *ngFor="let categoryID of categories$ | async "[value]="categoryID">{{categoryID|category}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Modelo</mat-label>
+            <mat-select [formControl]="editForm.controls['model']">
+                <mat-option *ngFor="let modelID of models$ | async "[value]="modelID">{{modelID|model}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Unidade Administrativa</mat-label>
+            <mat-select [formControl]="editForm.controls['ua']">
+                <mat-option *ngFor="let uaID of uas$ | async "[value]="uaID">{{uaID|ua}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Andar</mat-label>
+            <mat-select [formControl]="editForm.controls['floor']">
+                <mat-option *ngFor="let floorID of floors$ | async "[value]="floorID">{{floorID|floor}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Início da Garantia</mat-label>
+            <input matInput [matDatepicker]="warrantyStartPicker" [formControl]="editForm.controls['warranty_start']">
+            <mat-datepicker-toggle matSuffix [for]="warrantyStartPicker"></mat-datepicker-toggle>
+            <mat-datepicker #warrantyStartPicker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Fim da Garantia</mat-label>
+            <input matInput [matDatepicker]="warrantyEndPicker" [formControl]="editForm.controls['warranty_end']">
+            <mat-datepicker-toggle matSuffix [for]="warrantyEndPicker"></mat-datepicker-toggle>
+            <mat-datepicker #warrantyEndPicker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Data de Aquisição</mat-label>
+            <input matInput [matDatepicker]="acquisitionPicker" [formControl]="editForm.controls['acquisition_date']">
+            <mat-datepicker-toggle matSuffix [for]="acquisitionPicker"></mat-datepicker-toggle>
+            <mat-datepicker #acquisitionPicker></mat-datepicker>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Valor de Aquisição</mat-label>
+            <input matInput [formControl]="editForm.controls['acquisition_value']">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Status</mat-label>
+            <mat-select [formControl]="editForm.controls['status']">
+                <mat-option *ngFor="let s of status" [value]="s">{{ s }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-checkbox *ngIf="editForm.controls['category'].value.includes('COMPUTADOR')"
+            [formControl]="editForm.controls['policy']">Política</mat-checkbox>
+        <br>
+        <mat-form-field appearance="fill" *ngIf="editForm.controls['category'].value.includes('COMPUTADOR')">
+            <mat-label>Status do Zenworks</mat-label>
+            <mat-select [formControl]="editForm.controls['status_zenworks']">
+                <mat-option *ngFor="let option of servers_options" [value]="option">{{option}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill"
+            *ngIf="editForm.controls['category'].value.includes('COMPUTADOR')">
+            <mat-label>Status do TREND</mat-label>
+            <mat-select [formControl]="editForm.controls['status_trend']">
+                <mat-option *ngFor="let option of servers_options" [value]="option">{{option}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill"
+            *ngIf="editForm.controls['category'].value.includes('COMPUTADOR')">
+            <mat-label>Status do WSUS</mat-label>
+            <mat-select [formControl]="editForm.controls['status_wsus']">
+                <mat-option *ngFor="let option of servers_options" [value]="option">{{option}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-flat-button color="primary" mat-dialog-close>Cancelar</button>
+  <button mat-flat-button color="primary" [mat-dialog-close]="true" cdkFocusInitial>Editar</button>
+</mat-dialog-actions>

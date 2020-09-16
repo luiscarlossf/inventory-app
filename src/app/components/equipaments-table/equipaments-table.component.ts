@@ -10,6 +10,8 @@ import { AppState } from 'src/app/app.state';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSort } from '@angular/material/sort';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatDialog } from '@angular/material/dialog';
+import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 @Component({
   selector: 'app-equipaments-table',
@@ -34,7 +36,7 @@ export class EquipamentsTableComponent implements OnInit {
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   expandedElement: Equipament | null;
 
-  constructor(private readonly store: Store<AppState>){
+  constructor(private readonly store: Store<AppState>, public dialog: MatDialog){
     this.dataSource = new MatTableDataSource<Equipament>();
   }
 
@@ -72,5 +74,15 @@ export class EquipamentsTableComponent implements OnInit {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.patrimony}`;
+  }
+
+  editEquipament(data: Equipament){
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data:data,
+    });
+
+    dialogRef.afterClosed().subscribe(result=>{
+      console.log('Dialog result: ${result}');
+    });
   }
 }
