@@ -3,89 +3,89 @@
     <form [formGroup]="insertForm">
         <mat-form-field appearance="fill">
             <mat-label>Patrimônio</mat-label>
-            <input matInput>
+            <input matInput [formControl]="insertForm.controls['patrimony']">
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Marca</mat-label>
-            <mat-select>
+            <mat-select [formControl]="insertForm.controls['brand']">
                 <mat-option value="option">Option</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Categoria</mat-label>
-            <mat-select>
+            <mat-select [formControl]="insertForm.controls['category']">
                 <mat-option value="option">Option</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Modelo</mat-label>
-            <mat-select>
+            <mat-select [formControl]="insertForm.controls['model']">
                 <mat-option value="option">Option</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Unidade Administrativa</mat-label>
-            <mat-select>
+            <mat-select [formControl]="insertForm.controls['ua']">
                 <mat-option value="option">Option</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Andar</mat-label>
-            <mat-select>
+            <mat-select [formControl]="insertForm.controls['floor']">
                 <mat-option value="option">Option</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Início da Garantia</mat-label>
-            <input matInput [matDatepicker]="warrantyStartPicker">
+            <input matInput [matDatepicker]="warrantyStartPicker" [formControl]="insertForm.controls['warranty_start']">
             <mat-datepicker-toggle matSuffix [for]="warrantyStartPicker"></mat-datepicker-toggle>
             <mat-datepicker #warrantyStartPicker></mat-datepicker>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Fim da Garantia</mat-label>
-            <input matInput [matDatepicker]="warrantyEndPicker">
+            <input matInput [matDatepicker]="warrantyEndPicker" [formControl]="insertForm.controls['warranty_end']">
             <mat-datepicker-toggle matSuffix [for]="warrantyEndPicker"></mat-datepicker-toggle>
             <mat-datepicker #warrantyEndPicker></mat-datepicker>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Data de Aquisição</mat-label>
-            <input matInput [matDatepicker]="acquisitionPicker">
+            <input matInput [matDatepicker]="acquisitionPicker" [formControl]="insertForm.controls['acquisition_date']">
             <mat-datepicker-toggle matSuffix [for]="acquisitionPicker"></mat-datepicker-toggle>
             <mat-datepicker #acquisitionPicker></mat-datepicker>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Valor de Aquisição</mat-label>
-            <input matInput>
+            <input matInput [formControl]="insertForm.controls['acquisition_value']">
         </mat-form-field>
         <br>
-        <mat-checkbox>Política</mat-checkbox>
+        <mat-checkbox [formControl]="insertForm.controls['policy']">Política</mat-checkbox>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Status do Zenworks</mat-label>
-            <mat-select>
+            <mat-select [formControl]="insertForm.controls['status_zenworks']">
                 <mat-option value="option">Option</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Status do TREND</mat-label>
-            <mat-select>
+            <mat-select [formControl]="insertForm.controls['status_trend']">
                 <mat-option value="option">Option</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Status do WSUS</mat-label>
-            <mat-select>
+            <mat-select [formControl]="insertForm.controls['status_wsus']">
                 <mat-option value="option">Option</mat-option>
             </mat-select>
         </mat-form-field>
