@@ -3,34 +3,34 @@
         <mat-label>Marca</mat-label>
         <mat-select [formControl]="filtersForm.controls['brands']" multiple>
             <mat-option value="all">Todas</mat-option>
-            <mat-option *ngFor="let brand of brands" [value]="brand">{{brand.name}}</mat-option>
+            <mat-option *ngFor="let brandID of brands$ | async" [value]="brandID">{{brandID | brand}}</mat-option>
         </mat-select>
     </mat-form-field>
     
     <mat-form-field appearance="fill">
         <mat-label>Categoria</mat-label>
         <mat-select [formControl]="filtersForm.controls['categories']" multiple>
-            <mat-option *ngFor="let category of categories" [value]="category">{{category.name}}</mat-option>
+            <mat-option *ngFor="let categoryID of categories$ | async" [value]="categoryID">{{categoryID | category}}</mat-option>
         </mat-select>
     </mat-form-field>
     
     <mat-form-field appearance="fill">
         <mat-label>Modelo</mat-label>
         <mat-select [formControl]="filtersForm.controls['models']" multiple>
-            <mat-option *ngFor="let model of models" [value]="model">{{model.name}}</mat-option>
+            <mat-option *ngFor="let modelID of models$ | async" [value]="modelID">{{modelID | model}}</mat-option>
         </mat-select>
     </mat-form-field>
     
     <mat-form-field appearance="fill">
         <mat-label>UA</mat-label>
         <mat-select [formControl]="filtersForm.controls['uas']" multiple>
-            <mat-option *ngFor="let ua of uas" [value]="ua">{{ua.name}}</mat-option>
+            <mat-option *ngFor="let uaID of uas$ | async" [value]="uaID">{{uaID | ua}}</mat-option>
         </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
         <mat-label>Andar</mat-label>
         <mat-select [formControl]="filtersForm.controls['floors']" multiple>
-            <mat-option *ngFor="let floor of floors" [value]="floor">{{floor.name}}</mat-option>
+            <mat-option *ngFor="let floorID of floors$ | async" [value]="floorID">{{floorID | floor}}</mat-option>
         </mat-select>
     </mat-form-field>
     

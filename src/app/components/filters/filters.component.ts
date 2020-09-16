@@ -1,11 +1,14 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Brand } from 'src/app/models/brand.model';
-import { Category } from 'src/app/models/category.model';
-import { Status } from 'src/app/models/equipament.model';
-import { Floor } from 'src/app/models/floor.model';
-import { Model } from 'src/app/models/model.model';
-import { Ua } from 'src/app/models/ua.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
+import * as fromBrand from '../../redux/brand/brand.reducer';
+import * as fromCategory from '../../redux/category/category.reducer';
+import * as fromModel from '../../redux/model/model.reducer';
+import * as fromUa from '../../redux/ua/ua.reducer';
+import * as fromFloor from '../../redux/floor/floor.reducer';
+import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 export interface Filters{
   brands: string[] | string;
@@ -33,16 +36,21 @@ export interface Filters{
 })
 export class FiltersComponent implements OnInit {
   @Output() filters = new EventEmitter<Filters>();
-  brands: Brand[];
-  categories: Category[];
-  models: Model[];
-  uas: Ua[];
-  floors: Floor[];
-  status = ['Almoxarifado', 'Doação', 'Sucata', 'Usado'];
-  policies = ['Fora da política', 'Dentro da política'];
-  servers_options = ['Incluido', 'Fora', 'Sem registro'];
+  brands$: Observable<string[]>;
+  categories$: Observable<string[]>;
+  models$: Observable<string[]>;
+  uas$: Observable<string[]>;
+  floors$: Observable<string[]>;
+  status = environment.status;
+  policies = environment.policies;
+  servers_options = environment.servers_options;
   filtersForm: FormGroup;
-  constructor(fb: FormBuilder) {
+  constructor(private readonly store:Store<AppState>,fb: FormBuilder) {
+    this.brands$ = this.store.select(fromBrand.selectAllIDs);                
+    this.categories$ = this.store.select(fromCategory.selectAllIDs);
+    this.models$ = this.store.select(fromModel.selectAllIDs);
+    this.uas$ = this.store.select(fromUa.selectAllIDs);
+    this.floors$ = this.store.select(fromFloor.selectAllIDs);
     this.filtersForm = fb.group({
       'brands': [''],
       'categories': [''],
