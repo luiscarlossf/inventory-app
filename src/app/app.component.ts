@@ -11,6 +11,7 @@ import * as CategoryActions from './redux/category/category.actions';
 import * as FloorActions from './redux/floor/floor.actions';
 import * as ModelActions from './redux/model/model.actions';
 import * as UaActions from './redux/ua/ua.actions';
+import{ enableMapSet }from 'immer';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,9 @@ export class AppComponent {
   lastUpdate: number;
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private readonly store: Store<AppState>) {
+    //Habilita o MapSet do immer para ser usado nos reducers.
+    //A partir da version 6, essa tarefa é necessária.
+    enableMapSet();
     iconRegistry.addSvgIcon(
       'menu-icon',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/menu/menu-icon@1px.svg'));
