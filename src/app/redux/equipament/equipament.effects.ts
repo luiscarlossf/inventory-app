@@ -17,17 +17,17 @@ export class EquipamentEffects{
         ofType(EquipamentActions.createEquipament),
         mergeMap( action => {
             let equipament = {
-                patrimony: action.patrimony,
-                category: action.category,
-                status: action.status,
-                brand: action.brand,
-                model: action.model,
-                ua: action.ua,
-                floor: action.floor,
-                warranty_start: action.warranty_start,
-                warranty_end: action.warranty_end,
-                acquisition_date: action.acquisition_date,
-                acquisition_value: action.acquisition_value
+                patrimony: action.patrimony? action.patrimony: null,
+                category: action.category? action.category: null,
+                status: action.status? action.status: null,
+                brand: action.brand? action.brand: null,
+                model: action.model? action.model: null,
+                ua: action.ua? action.ua: null,
+                floor: action.floor? action.floor: null,
+                warranty_start: action.warranty_start ?  action.warranty_start : null,
+                warranty_end: action.warranty_end? action.warranty_end : null,
+                acquisition_date: action.acquisition_date? action.acquisition_date: null,
+                acquisition_value: action.acquisition_value? action.acquisition_value : null,
             };
             return this.api.create<Equipament>('equipaments', equipament)
             .pipe(
