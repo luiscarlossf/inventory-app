@@ -25,6 +25,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { PipesModule } from '../pipes/pipes.module';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     CardItemComponent,
     EditDialogComponent,
     DeleteDialogComponent,
+    ConfirmDialogComponent,
   ],
   exports: [
     InsertDialogComponent,
@@ -51,6 +53,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     EditDialogComponent,
     InsertDialogComponent,
     DeleteDialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     PipesModule,
