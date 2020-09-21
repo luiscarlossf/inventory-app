@@ -6,8 +6,8 @@ export const environment = {
   production: false,
   apiUrl: 'http://localhost:8000/',
   status: ['Almoxarifado', 'Doação', 'Sucata', 'Usado'],
-  policies: ['Fora da política', 'Dentro da política'],
-  servers_options: ['Incluido', 'Fora', 'Sem registro'],
+  policies: [{title:'Fora da política', value: false}, {title:'Dentro da política', value:true}],
+  servers_options: [{title:'Incluido', value:true}, {title:'Fora', value:false}, {title:'Sem registro', value:null}],
 };
 
 /*
