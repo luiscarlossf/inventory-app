@@ -14,7 +14,6 @@ import * as UaActions from './redux/ua/ua.actions';
 import * as fromUser from './redux/user/user.reducer';
 import{ enableMapSet }from 'immer';
 import { Observable } from 'rxjs';
-import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 import { EquipamentsComponent } from './pages/equipaments/equipaments.component';
 
