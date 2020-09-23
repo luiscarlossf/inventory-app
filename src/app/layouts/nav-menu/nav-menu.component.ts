@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
 import { NavLink } from '../../models/nav-link.model';
+import * as UserActions from '../../redux/user/user.actions';
 
 @Component({
   selector: 'app-nav-menu',
@@ -10,7 +14,7 @@ export class NavMenuComponent implements OnInit {
   links: NavLink[];
   currentPage: number;
 
-  constructor() { 
+  constructor(private readonly store: Store<AppState>, private router: Router) { 
     this.currentPage = 1;
     this.links = [
       {title: "HOME", icon: 'home', url: ['/'], tip: 'Páginal Inicial'},
@@ -21,6 +25,11 @@ export class NavMenuComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  logout(): void {
+    this.store.dispatch(UserActions.logout());
+    this.router.navigate(['/login']);
   }
 
 }

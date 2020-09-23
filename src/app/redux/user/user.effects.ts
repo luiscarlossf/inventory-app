@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthService } from '../../auth/auth.service';
-import { mergeMap, map, exhaustMap, catchError} from 'rxjs/operators';
+import { mergeMap, map, exhaustMap, catchError, tap} from 'rxjs/operators';
 import * as UserActions from './user.actions';
 import { of } from 'rxjs';
 
@@ -26,6 +26,11 @@ export class UserEffects{
         )
         //KEEP CONNECTED OR NOT
         ),
+    ));
+    
+    logout$ = createEffect(() => this.actions$.pipe(
+        ofType(UserActions.logout),
+        tap(action => this.auth.logout()),
     ));
 
     constructor(
