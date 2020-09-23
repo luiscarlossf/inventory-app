@@ -1,6 +1,7 @@
 import { User } from '../../models/user.model';
 import * as UserActions from './user.actions';
 import { createReducer, Action, on, createSelector } from '@ngrx/store';
+import { AppState } from 'src/app/app.state';
 
 /**
  * @interface
@@ -43,11 +44,18 @@ const userReducer = createReducer(
 export function reducer(state: UserState | undefined, action: Action){
     return userReducer(state, action);
 }
+/**
+ * Seleciona user do estado da aplicação.
+ */
+export const selectUser =  (state: AppState) => state.user;
 
 /**
  * Seleciona o usuário corrente do ramo user.
  */
-export const selectUser =  (state: UserState) => state.currentUser;
+export const selectCurrentUser =  createSelector(
+    selectUser,
+    (state: UserState) => state.currentUser,
+);
 
 /**
  * Seleciona o erro do ramo user.
@@ -61,7 +69,7 @@ export const selectKeepConnected =  (state: UserState) => state.keepConnected;
 
 /**Retorna o token do usuário corrente */
 export const getToken = createSelector(
-    selectUser,
+    selectCurrentUser,
     (selectedUser: User) => {
         return selectedUser.token;
     }
