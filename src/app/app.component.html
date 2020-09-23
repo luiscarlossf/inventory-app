@@ -11,22 +11,17 @@
   </div>
   <div class="center">
       <div class="search">
-          <button type="submit">
-              <img src="assets/img/search/search-icon@1px.svg"
+              
+          <button (click)="doSearch(search.value)" type="submit">
+            <img src="assets/img/search/search-icon@1px.svg"
                   alt="Lupa. Botão de pesquisa"
                   title="Pesquisa">
           </button>
-          <input type="search"
+          <input matInput type="search"
               id="search"
               name="search"
-              placeholder="Pesquise o patrimônio"
-              list="mySuggestion">
-          <datalist id="mySuggestion">
-              <option>00000000</option>
-              <option>11111111</option>
-              <option>22222222</option>
-              <option>33333333</option>
-          </datalist>   
+              #search
+              placeholder="Pesquise o patrimônio"> 
       </div>                    
   </div>
   <div class="right">
@@ -37,7 +32,7 @@
                   alt="Usuário logado"
                   width="32px"
                   height="32px">
-              <span class="user-name">Luis Carlos</span>
+              <span *ngIf="user" class="user-name">{{ user.first_name }}</span>
           </a>
       </div>
   </div>

@@ -120,5 +120,6 @@ export class AuthService implements OnInit{
     this.user = null;
     this.token = null;
     localStorage.removeItem('token');
+    localStorage.removeItem('first_name');
   }
 }

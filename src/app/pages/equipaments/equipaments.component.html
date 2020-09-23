@@ -1,5 +1,5 @@
 
-<div class="container">
+<div *ngIf="!searching" class="container">
     <app-filters (filters)="applyFilters($event)">Loading filters...</app-filters>
 </div>
 

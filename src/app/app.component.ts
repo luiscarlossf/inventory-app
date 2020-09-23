@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
@@ -11,19 +11,27 @@ import * as CategoryActions from './redux/category/category.actions';
 import * as FloorActions from './redux/floor/floor.actions';
 import * as ModelActions from './redux/model/model.actions';
 import * as UaActions from './redux/ua/ua.actions';
+import * as fromUser from './redux/user/user.reducer';
 import{ enableMapSet }from 'immer';
+import { Observable } from 'rxjs';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
+import { EquipamentsComponent } from './pages/equipaments/equipaments.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'inventory-app';
   user: User;
+  user$: Observable<User>;
   lastUpdate: number;
+  @ViewChild(EquipamentsComponent, {static: true})
+  equipamentsPage: EquipamentsComponent;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private readonly store: Store<AppState>) {
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private readonly store: Store<AppState>, private router: Router){
     //Habilita o MapSet do immer para ser usado nos reducers.
     //A partir da version 6, essa tarefa é necessária.
     enableMapSet();
@@ -52,6 +60,17 @@ export class AppComponent {
       'chart',
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/chart-white@1px.svg'));
     //Carrega os equipamentos e computadores armazenados no servidor.
+    this.user$ = this.store.select(fromUser.selectCurrentUser);
+  }
+
+  doSearch(e: string){
+    this.router.navigate(['/equipaments', {query: e}]);
+  }
+
+  ngOnInit(): void{
+    this.user$.subscribe(user =>{
+      this.user = user;
+    });
     this.store.dispatch(BrandActions.loadBrands());
     this.store.dispatch(CategoryActions.loadCategories());
     this.store.dispatch(FloorActions.loadFloors());
@@ -61,7 +80,4 @@ export class AppComponent {
     this.store.dispatch(ComputerActions.loadComputers());
     this.lastUpdate = Date.now();
   }
-
-  doSearch(query: string){}
-
 }

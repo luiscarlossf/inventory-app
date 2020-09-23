@@ -28,6 +28,7 @@ import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 export class EquipamentsTableComponent implements OnInit {
   dataSource : MatTableDataSource<Equipament>;
   @Input() equipaments$: Observable<Array<Equipament>>;
+  filter: string;
   columnsToDisplay = ['select', 'patrimony', 'brand', 'category', 'model', 'ua', 'floor','status', 'warranty_start','warranty_end', 'acquisition_date', 'acquisition_value'];
   initialSelection = [];
   allowMultiSelect = true;
@@ -47,6 +48,18 @@ export class EquipamentsTableComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
+
+  /**
+   * Filtra os elementos da tabela
+   */
+
+   filtrar(filtro: string){
+    this.filter = filtro;
+    if(filtro)
+      this.dataSource.filter = filtro.trim().toLowerCase();
+    else
+      this.dataSource.filter = null;
+   }
   
   /**
    * Verifica se o número de elementos selecionados é o 
