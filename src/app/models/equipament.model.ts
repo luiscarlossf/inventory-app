@@ -10,9 +10,9 @@ export enum Status {
 export interface Equipament{
     url?: string;
     patrimony: string;
-    warranty_start?: Date;
-    warranty_end?: Date;
-    acquisition_date?: Date;
+    warranty_start?: Date | string;
+    warranty_end?: Date | string;
+    acquisition_date?: Date | string;
     acquisition_value?: number;
     status: Status;
     /**@type {string} Url da marca do equipamento. */
