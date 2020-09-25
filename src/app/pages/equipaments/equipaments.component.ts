@@ -22,6 +22,7 @@ import { Category } from 'src/app/models/category.model';
 import { Model } from 'src/app/models/model.model';
 import { Floor } from 'src/app/models/floor.model';
 import { Ua } from 'src/app/models/ua.model';
+import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-equipaments',
@@ -80,12 +81,22 @@ export class EquipamentsComponent implements OnInit {
         }
         this.store.dispatch(EquipamentActions.createEquipament(equipament));
       }
-
-    })
+    });
   }
 
-  alterStatus(){
-    
+  delete(){
+    let items: Equipament[] = this.equipamentTable.getSelecteds();
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, 
+      {data: {title:"Removendo equipamentos", 
+              message:`Deseja realmente remover ${items.length} equipamentos?`,
+              list: items}
+    });
+
+    dialogRef.afterClosed().subscribe(result =>{
+      if((result == true) && (items.length != 0)){
+        items.forEach( item => this.store.dispatch(EquipamentActions.deleteEquipament({url:item.url})));
+      }
+    });
   }
 
   alterServerStatus(){
