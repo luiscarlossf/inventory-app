@@ -5,6 +5,7 @@ import { CategoryPipe } from './category.pipe';
 import { FloorPipe } from './floor.pipe';
 import { ModelPipe } from './model.pipe';
 import { UaPipe } from './ua.pipe';
+import { EquipamentPipe } from './equipament.pipe';
 
 
 
@@ -15,6 +16,7 @@ import { UaPipe } from './ua.pipe';
     FloorPipe,
     ModelPipe,
     UaPipe,
+    EquipamentPipe,
   ],
   exports:[
     BrandPipe,
@@ -22,6 +24,7 @@ import { UaPipe } from './ua.pipe';
     FloorPipe,
     ModelPipe,
     UaPipe,
+    EquipamentPipe,
   ],
   imports: [
     CommonModule
