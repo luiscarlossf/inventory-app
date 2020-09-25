@@ -60,6 +60,14 @@ export class EquipamentsTableComponent implements OnInit {
     else
       this.dataSource.filter = null;
    }
+
+  /**
+   * Retorna todos os elementos selecionados na tabela
+   */
+
+   getSelecteds(){
+     return this.dataSource.data.filter(row => this.selection.isSelected(row));
+   }
   
   /**
    * Verifica se o número de elementos selecionados é o 
@@ -95,7 +103,9 @@ export class EquipamentsTableComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result=>{
-      console.log('Dialog result: ${result}');
+      if(result){
+        this.store.dispatch(EquipamentActions.updateEquipament({equipament:(result as Equipament)}));
+      }
     });
   }
 }
