@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface ConfirmData{
   title: string;
   message: string;
+  list?: Array<any>;
 }
 
 @Component({

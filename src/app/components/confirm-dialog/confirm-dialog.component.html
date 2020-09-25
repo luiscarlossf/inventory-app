@@ -1,6 +1,13 @@
 <h1 mat-dialog-title>{{ data.title }}</h1>
 <div mat-dialog-content>
     <p>{{ data.message }}</p>
+    <div class="list-section">
+        <mat-selection-list #list [multiple]="false" *ngIf="data.list">
+            <mat-list-option *ngFor="let item of data.list" [value]="item">
+                {{ item | equipament}}
+            </mat-list-option>
+        </mat-selection-list>
+    </div>
 </div>
 <div mat-dialog-actions>
     <button mat-button mat-dialog-close>Cancelar</button>

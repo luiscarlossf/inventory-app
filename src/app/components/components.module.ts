@@ -26,6 +26,7 @@ import { PipesModule } from '../pipes/pipes.module';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.componen
     MatDividerModule,
     MatButtonToggleModule,
     MatSortModule,
+    MatListModule,
   ]
 })
 export class ComponentsModule { }

@@ -1,0 +1,4 @@
+.list-section {
+    max-height: 250px;
+    overflow: auto;
+}
