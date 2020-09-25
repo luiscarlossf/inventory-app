@@ -5,6 +5,7 @@ import * as EquipamentActions from './equipament.actions';
 import { Equipament } from '../../models/equipament.model';
 import { mergeMap, catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import * as utils from 'src/utils';
 
 @Injectable()
 export class EquipamentEffects{
@@ -24,20 +25,24 @@ export class EquipamentEffects{
                 model: action.model? action.model: null,
                 ua: action.ua? action.ua: null,
                 floor: action.floor? action.floor: null,
-                warranty_start: action.warranty_start ?  action.warranty_start : null,
-                warranty_end: action.warranty_end? action.warranty_end : null,
-                acquisition_date: action.acquisition_date? action.acquisition_date: null,
+                warranty_start: action.warranty_start ?  utils.convertDateToString(action.warranty_start as Date) : null,
+                warranty_end: action.warranty_end? utils.convertDateToString(action.warranty_end as Date) : null,
+                acquisition_date: action.acquisition_date? utils.convertDateToString(action.acquisition_date as Date): null,
                 acquisition_value: action.acquisition_value? action.acquisition_value : null,
             };
             return this.api.create<Equipament>('equipaments', equipament)
             .pipe(
                 map(response => {
                     let newEquipament = <Equipament>response.body;
+                    newEquipament.warranty_start = utils.convertStringToDate(newEquipament.warranty_start as string);
+                    newEquipament.warranty_end = utils.convertStringToDate(newEquipament.warranty_end as string);
+                    newEquipament.acquisition_date = utils.convertStringToDate(newEquipament.acquisition_date as string);
                     return EquipamentActions.createEquipamentSuccess({equipament:newEquipament});
                 })
             )}
         ),
         catchError( error =>{
+            console.log(error);
             return of(EquipamentActions.loadEquipamentsFailure({error}));
         })
 
