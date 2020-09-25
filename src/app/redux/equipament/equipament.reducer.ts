@@ -250,3 +250,10 @@ export const generalStatics = createSelector(
         return statics;
     },
 );
+/**
+ * Retorna um equipamento especificado pelo o identificador.
+ */
+export const selectEquipamentByKey= createSelector(
+    selectAllEquipaments,
+    (equipaments: Map<string, Equipament>, props: any) => equipaments.get(props.key),
+);
