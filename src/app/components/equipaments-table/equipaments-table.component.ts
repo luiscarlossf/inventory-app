@@ -12,6 +12,7 @@ import { MatSort } from '@angular/material/sort';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-equipaments-table',
@@ -109,6 +110,19 @@ export class EquipamentsTableComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       if(result){
         this.store.dispatch(EquipamentActions.updateEquipament({equipament:({...data, ...result} as Equipament)}));
+      }
+    });
+  }
+
+  removeEquipament(data: Equipament){
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title:"Removendo equipamento", 
+              message:`Deseja realmente remover o equipamento ${data.patrimony}?`}
+    });
+
+    dialogRef.afterClosed().subscribe(result=>{
+      if(result){
+        this.store.dispatch(EquipamentActions.deleteEquipament({url: data.url}));
       }
     });
   }

@@ -88,16 +88,26 @@
         <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
           <div class="example-element-detail"
               [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <div class="example-element-diagram">
-              <div class="example-element-position"> {{element.patrimony}} </div>
-            </div>
-            <div class="example-element-description">
-              {{element.status}}
+            <div class="element-title"> {{element.patrimony}} </div>
+            <div class="element-description">
+              <br>
+              {{element.category | category}}
+              <br>
+              <span class="bolder">Marca:</span> {{ element.brand | brand}}  <span class="bolder">Modelo:</span> {{ element.model | model }}
+              <br>
+              <span class="bolder">Localização:</span> {{ element.ua | ua }} - {{ element.floor | floor }}
+              <br>
+              <span class="bolder">Status:</span> {{ element.status }}
+              <br>
             </div>
             <div class="mini-button">
               <button mat-flat-button (click)="editEquipament(element)">
               Editar
               <mat-icon>add</mat-icon>
+              </button>
+              <button mat-flat-button (click)="removeEquipament(element)">
+              Remover
+              <mat-icon>remove</mat-icon>
               </button>
             </div>
           </div>
