@@ -16,6 +16,7 @@ import{ enableMapSet }from 'immer';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { EquipamentsComponent } from './pages/equipaments/equipaments.component';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,7 @@ export class AppComponent implements OnInit{
   @ViewChild(EquipamentsComponent, {static: true})
   equipamentsPage: EquipamentsComponent;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private readonly store: Store<AppState>, private router: Router){
+  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private readonly store: Store<AppState>, private router: Router, private auth: AuthService){
     //Habilita o MapSet do immer para ser usado nos reducers.
     //A partir da version 6, essa tarefa é necessária.
     enableMapSet();

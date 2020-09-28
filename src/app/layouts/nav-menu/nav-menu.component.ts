@@ -28,8 +28,8 @@ export class NavMenuComponent implements OnInit {
   }
 
   logout(): void {
+    
     this.store.dispatch(UserActions.logout());
-    this.router.navigate(['/login']);
   }
 
 }
