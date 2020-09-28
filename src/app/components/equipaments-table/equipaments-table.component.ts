@@ -97,6 +97,10 @@ export class EquipamentsTableComponent implements OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.patrimony}`;
   }
 
+  /**
+   * Dispara a ação de edição de um equipamento
+   * @param data equipamento que vai ser editado.
+   */
   editEquipament(data: Equipament){
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data:data,
@@ -104,7 +108,7 @@ export class EquipamentsTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result=>{
       if(result){
-        this.store.dispatch(EquipamentActions.updateEquipament({equipament:(result as Equipament)}));
+        this.store.dispatch(EquipamentActions.updateEquipament({equipament:({...data, ...result} as Equipament)}));
       }
     });
   }

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppState } from 'src/app/app.state';
@@ -17,6 +17,7 @@ import * as fromCategory from '../../redux/category/category.reducer';
 import * as fromModel from '../../redux/model/model.reducer';
 import * as fromUa from '../../redux/ua/ua.reducer';
 import * as fromFloor from '../../redux/floor/floor.reducer';
+import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -36,7 +37,7 @@ export class EditDialogComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Equipament | Computer, 
               fb: FormBuilder,
-              private readonly store: Store<AppState>) { 
+              private readonly store: Store<AppState>, private dialog: MatDialog, public dialogRef: MatDialogRef<EditDialogComponent>) { 
     
     this.brands$ = this.store.select(fromBrand.selectAllIDs);                
     this.categories$ = this.store.select(fromCategory.selectAllIDs);
@@ -74,6 +75,16 @@ export class EditDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  edit(form: Equipament){
+    const confirmRef = this.dialog.open(ConfirmDialogComponent, 
+      {data: {title: 'Tem certeza?', message:'Editando o equipamento com patrimônio ' + this.editForm.controls['patrimony'].value}});
+    confirmRef.afterClosed().subscribe(result => {
+      if(result === true){
+        this.dialogRef.close(form);
+      }
+    });
   }
 
 }
