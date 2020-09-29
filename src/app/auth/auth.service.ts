@@ -1,12 +1,13 @@
 import { Injectable, OnInit } from '@angular/core';
 import { User } from '../models/user.model';
 import { BackendService } from '../services/backend/backend.service';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Store, select } from '@ngrx/store';
 import * as fromUser from '../redux/user/user.reducer';
 import { Router } from '@angular/router';
+import { AppState } from '../app.state';
 
 /**
  * Serviço responsável pela autenticação dos usuários do sistema.
@@ -16,7 +17,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService implements OnInit{
   /**@type {object} Stream do ramo da árvore de estado da aplicação. */
-  private user$: Observable<fromUser.UserState>;
+  private user$: Observable<User>;
   /**@type  {User} Usuário logado no sistema.*/
   private user: User;
   /**@type {boolean} Indica o progresso do processo de login. */
@@ -30,26 +31,10 @@ export class AuthService implements OnInit{
   /**@type {boolean} Indica se o existe um usuário logado. */
   isLoggedIn: boolean = false;
 
-  constructor(private http: HttpClient, private readonly store: Store<{user:fromUser.UserState}>, private router: Router) { 
-    this.user$ = store.pipe(select('user'));
+  constructor(private http: HttpClient, private readonly store: Store<AppState>, private router: Router) { 
   }
 
   ngOnInit(){
-    this.user$.subscribe(
-      user => {
-        console.log("Auth!");
-        if(user.currentUser){
-          console.log("Setando usuário no serviço Auth...");
-          this.setUser(user.currentUser);
-          this.setToken(user.currentUser.token);
-          this.isLoggedIn = true;
-        }else{
-          this.setUser(null);
-          this.setToken(null);
-          this.isLoggedIn = false;
-        }
-        
-    });
   }
 
   /**
@@ -85,12 +70,6 @@ export class AuthService implements OnInit{
    * @returns {string} Token de autorização;
    */
   getAuthorizationToken(): string{
-    ///////REMOVER DURANTE A PRODUÇÃO/////
-    let t = localStorage.getItem("token");
-    if(t){
-      return t;
-    }
-    ////////////////////////////////////
     return this.token;
   }
 
@@ -119,7 +98,5 @@ export class AuthService implements OnInit{
     this.isLoggedIn = false;
     this.user = null;
     this.token = null;
-    localStorage.removeItem('token');
-    localStorage.removeItem('first_name');
   }
 }
