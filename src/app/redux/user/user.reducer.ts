@@ -26,14 +26,26 @@ const initialState: UserState= {
 */
 const userReducer = createReducer(
     initialState,
-    on(UserActions.login, (state, { email, password, connected }) => (state)),
-    on(UserActions.loginSuccess, (state, { user })=> ({...state, currentUser: user, error: null})),
-    on(UserActions.loginFailure, (state, { error })=> ({...state, currentUser: null, error: error})),
-    on(UserActions.logout, state => ({
-        currentUser:null,
-        keepConnected: null,
-        error: null
-    })),
+    on(UserActions.login, (state, { email, password, connected }) => {
+        console.log("LOGIN!");
+        return({...state});
+    }),
+    on(UserActions.loginSuccess, (state, { user })=> { 
+        console.log("LOGIN SUCCESS!");
+        return ({...state, currentUser: user, error: null});
+    }),
+    on(UserActions.loginFailure, (state, { error })=> { 
+        console.log("LOGIN FAILURE!");
+        return ({...state, currentUser: null, error: error});
+    }),
+    on(UserActions.logout, state => {
+        console.log("LOGOUT!");
+        return({
+            currentUser:null,
+            keepConnected: null,
+            error: null
+        });
+    }),
     on(UserActions.keepConnected, state => ({...state, keepConnected: true}))
 );
 
@@ -72,6 +84,17 @@ export const getToken = createSelector(
     selectCurrentUser,
     (selectedUser: User) => {
         return selectedUser.token;
+    }
+);
+
+/**
+ * Indica se possui um usuário conectado
+ */
+
+export const isLoggedUser = createSelector(
+    selectCurrentUser,
+    (selectedUser: User) => {
+        return selectedUser !== null;
     }
 );
 
