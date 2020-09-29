@@ -10,13 +10,16 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
+import { AppState } from '../app.state';
+import { Store } from '@ngrx/store';
+import * as UserActions from '../redux/user/user.actions';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AuthGuard implements CanActivate, CanLoad{
 
-    constructor(private auth: AuthService, private router: Router){}
+    constructor(private auth: AuthService, private router: Router, private store: Store<AppState>){}
 
     canActivate(next: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): boolean | UrlTree{
@@ -34,11 +37,15 @@ export class AuthGuard implements CanActivate, CanLoad{
     }
 
     checkLogin(url: string): boolean {
-        if (this.auth.isLoggedIn || localStorage.getItem('token') ){
+        if (this.auth.isLoggedIn){
             ///////////
             console.log("Navegando para próxima página.");
             //////////
             return true; 
+        }else if(localStorage.getItem('token')){
+            let user = {token: localStorage.getItem('token'), first_name: localStorage.getItem('first_name')};
+            this.store.dispatch(UserActions.loginSuccess({user}));
+            return true;
         }
         /////////////
         console.log("Não pode carregar, façao login primeiro.");
