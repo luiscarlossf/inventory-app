@@ -13,14 +13,16 @@ export class BrandPipe implements PipeTransform{
   constructor(private readonly store: Store<AppState>){}
 
   transform(value: string | Brand): string {
-    let name: string;
+    let name: string = '';
     let brands$ = this.store.select(fromBrand.selectBrandByKey, {key:value});
-    if(typeof(value)=="string"){
-      brands$.subscribe(brand =>{
-        name = brand? brand.name : '';
-      });
-    }else{
-      name = value.name;
+    if(value){
+      if(typeof(value)=="string"){
+        brands$.subscribe(brand =>{
+          name = brand? brand.name : '';
+        });
+      }else{
+        name = value.name;
+      }
     }
     return name;
   }
