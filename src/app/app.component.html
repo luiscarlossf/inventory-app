@@ -1,4 +1,4 @@
-<header>
+<header *ngIf="isLogged$ | async">
   <div class="left">
       <button class="menu-icon" mat-icon-button  (click)="sidenav.toggle()" title="Menu de navegação">
           <img src="assets/img/menu/menu-icon@1px.svg" 
@@ -74,7 +74,7 @@
         <router-outlet></router-outlet>
     </main>
 </mat-sidenav-container>
-<footer>
+<footer *ngIf="isLogged$ | async">
     <div class="left">
         <p>Criado por <a href="https://github.com/luiscarlossf" title="Perfil do github do autor do sistema.">Luis Carlos</a></p>
     </div>

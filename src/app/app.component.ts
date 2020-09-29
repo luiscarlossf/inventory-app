@@ -4,19 +4,13 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { AppState } from './app.state';
 import { User } from './models/user.model';
-import * as EquipamentActions from './redux/equipament/equipament.actions';
-import * as ComputerActions from './redux/computer/computer.actions';
-import * as BrandActions from './redux/brand/brand.actions';
-import * as CategoryActions from './redux/category/category.actions';
-import * as FloorActions from './redux/floor/floor.actions';
-import * as ModelActions from './redux/model/model.actions';
-import * as UaActions from './redux/ua/ua.actions';
 import * as fromUser from './redux/user/user.reducer';
 import{ enableMapSet }from 'immer';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { EquipamentsComponent } from './pages/equipaments/equipaments.component';
 import { AuthService } from './auth/auth.service';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-root',
@@ -28,8 +22,11 @@ export class AppComponent implements OnInit{
   user: User;
   user$: Observable<User>;
   lastUpdate: number;
+  isLogged$: Observable<boolean>;
   @ViewChild(EquipamentsComponent, {static: true})
   equipamentsPage: EquipamentsComponent;
+  @ViewChild(MatSidenav, {static: true})
+  sideNav: MatSidenav;
 
   constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer, private readonly store: Store<AppState>, private router: Router, private auth: AuthService){
     //Habilita o MapSet do immer para ser usado nos reducers.
@@ -61,6 +58,7 @@ export class AppComponent implements OnInit{
       sanitizer.bypassSecurityTrustResourceUrl('assets/img/nav/chart-white@1px.svg'));
     //Carrega os equipamentos e computadores armazenados no servidor.
     this.user$ = this.store.select(fromUser.selectCurrentUser);
+    this.isLogged$ = this.store.select(fromUser.isLoggedUser);
   }
 
   doSearch(e: string){
@@ -71,13 +69,12 @@ export class AppComponent implements OnInit{
     this.user$.subscribe(user =>{
       this.user = user;
     });
-    this.store.dispatch(BrandActions.loadBrands());
-    this.store.dispatch(CategoryActions.loadCategories());
-    this.store.dispatch(FloorActions.loadFloors());
-    this.store.dispatch(ModelActions.loadModels());
-    this.store.dispatch(UaActions.loadUas());
-    this.store.dispatch(EquipamentActions.loadEquipaments());
-    this.store.dispatch(ComputerActions.loadComputers());
+
+    this.isLogged$.subscribe(value => {
+      if(value == false){
+        this.sideNav.close();
+      }
+    });
     this.lastUpdate = Date.now();
   }
 }
