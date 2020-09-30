@@ -25,14 +25,14 @@
       </div>                    
   </div>
   <div class="right">
-      <div class="user-content">
+      <div class="user-content" *ngIf="user">
           <a href="#" title="Usuário logado">
               <img class="user-avatar"
                   src="assets/img/avatar/user.jpeg"
                   alt="Usuário logado"
                   width="32px"
                   height="32px">
-              <span *ngIf="user" class="user-name">{{ user.first_name }}</span>
+              <span class="user-name">{{ user.first_name }}</span>
           </a>
       </div>
   </div>
