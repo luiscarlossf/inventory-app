@@ -48,7 +48,7 @@ export class UserEffects{
             this.store.dispatch(ModelActions.loadModels());
             this.store.dispatch(UaActions.loadUas());
             this.store.dispatch(EquipamentActions.loadEquipaments());
-            this.store.dispatch(ComputerActions.loadComputers());
+            //this.store.dispatch(ComputerActions.loadComputers());
             
             return [];
         }),
