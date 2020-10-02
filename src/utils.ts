@@ -10,3 +10,7 @@ export const convertStringToDate = (val: string) => {
     console.log(converted_date);
     return converted_date; 
 };
+
+export const COMPUTER_ID = 'MICROCOMPUTADOR';
+export const PRM_ID = 'PRM';
+export const PRPI_ID = 'PRPI';
