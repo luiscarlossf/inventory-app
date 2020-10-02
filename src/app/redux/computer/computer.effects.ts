@@ -18,6 +18,8 @@ export class ComputerEffects{
         mergeMap( action => {
             let computer = {
                 patrimony: action.patrimony,
+                isComputer: true,
+                isPRM: false, ///////////////////////////////////////////////////
                 category: action.category,
                 status: action.status,
                 brand: action.brand,

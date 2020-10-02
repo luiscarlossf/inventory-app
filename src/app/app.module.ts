@@ -33,6 +33,7 @@ import { ComponentsModule } from './components/components.module';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { GeneralService } from './services/general/general.service';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { MatButtonModule } from '@angular/material/button';
   ],
   providers: [
     BackendService,
+    GeneralService,
     httpInterceptorProviders,
     { provide: LocationStrategy, useClass: HashLocationStrategy},
     { provide: APP_BASE_HREF, useValue: '/' },

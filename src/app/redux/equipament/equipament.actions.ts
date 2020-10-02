@@ -9,6 +9,8 @@ export const createEquipament = createAction(
     '[Equipaments Page] Create Equipament',
     props<{
         patrimony: string,
+        isComputer: boolean;
+        isPRM: boolean;
         category: string,
         status: Status,
         brand?: string,
@@ -74,7 +76,7 @@ export const loadEquipamentsFailure = createAction(
  */
 export const deleteEquipament = createAction(
     '[Equipaments Page] Delete Equipament',
-    props<{url: string}>(),
+    props<{equipament: Equipament}>(),
 );
 
 /**

@@ -122,7 +122,7 @@ export class EquipamentsTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result=>{
       if(result){
-        this.store.dispatch(EquipamentActions.deleteEquipament({url: data.url}));
+        this.store.dispatch(EquipamentActions.deleteEquipament({equipament: data}));
       }
     });
   }

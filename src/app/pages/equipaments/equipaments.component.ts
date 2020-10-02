@@ -15,6 +15,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { InsertDialogComponent } from '../../components/insert-dialog/insert-dialog.component';
 import { Equipament } from 'src/app/models/equipament.model';
 import { EditDialogComponent } from 'src/app/components/edit-dialog/edit-dialog.component';
+import * as utils from 'src/utils';
 import { filter, map, switchMap, take } from 'rxjs/operators';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Brand } from 'src/app/models/brand.model';
@@ -66,8 +67,11 @@ export class EquipamentsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result=>{
       if(result){
+        let isComputer: boolean = this.category.get(result.category).name.includes(utils.COMPUTER_ID);
         let equipament: Equipament = {
           patrimony: result.patrimony,
+          isComputer: isComputer,
+          isPRM: this.ua.get(result.ua).name.includes(utils.PRM_ID),
           warranty_start: result.warranty_start,
           warranty_end: result.warranty_end,
           acquisition_date: result.acquisition_date,
@@ -78,6 +82,13 @@ export class EquipamentsComponent implements OnInit {
           model: result.model,
           ua: result.ua,
           floor: result.floor
+        }
+
+        if(isComputer){
+          equipament.policy = result.policy;
+          equipament.status_trend = result.status_trend;
+          equipament.status_wsus = result.status_wsus;
+          equipament.status_zenworks = result.status_zenworks;
         }
         this.store.dispatch(EquipamentActions.createEquipament(equipament));
       }
@@ -94,7 +105,7 @@ export class EquipamentsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result =>{
       if((result == true) && (items.length != 0)){
-        items.forEach( item => this.store.dispatch(EquipamentActions.deleteEquipament({url:item.url})));
+        items.forEach( item => this.store.dispatch(EquipamentActions.deleteEquipament({equipament:item})));
       }
     });
   }

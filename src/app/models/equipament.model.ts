@@ -10,6 +10,8 @@ export enum Status {
 export interface Equipament{
     url?: string;
     patrimony: string;
+    isComputer: boolean;
+    isPRM: boolean;
     warranty_start?: Date | string;
     warranty_end?: Date | string;
     acquisition_date?: Date | string;
@@ -25,4 +27,8 @@ export interface Equipament{
     ua?: string;
     /**@type {string} Url do andar onde o equipamento está localizado. */
     floor?: string;
+    policy?: boolean;
+    status_zenworks?: boolean;
+    status_trend?: boolean;
+    status_wsus?: boolean;
 }
