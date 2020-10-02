@@ -26,12 +26,9 @@ export class ServerCardsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.countWSUS$ = this.store.pipe(select(fromComputer.getCountWSUS));
-    this.countZENWORKS$ = this.store.pipe(select(fromComputer.getCountZENWORKS));
-    this.countTREND$ = this.store.pipe(select(fromComputer.getCountZENWORKS));
-    this.countWSUS$.subscribe(c=>{
-      console.log("Quantidade de computadores no WSUS:", c);
-    })
+    this.countWSUS$ = this.store.select(fromEquipament.getCountWSUS, {local: null});
+    this.countZENWORKS$ = this.store.select(fromEquipament.getCountZENWORKS, {local: null});
+    this.countTREND$ = this.store.select(fromEquipament.getCountZENWORKS, {local: null});
   }
 
 }

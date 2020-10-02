@@ -3,10 +3,10 @@
         <header>{{ title }}</header>
         <ng-content></ng-content>
         <br>
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-            <mat-button-toggle checked="true" value="geral">Geral</mat-button-toggle>
-            <mat-button-toggle value="prpi">PRPI</mat-button-toggle>
-            <mat-button-toggle value="prm">PRM</mat-button-toggle>
+        <mat-button-toggle-group #locals (change)="filter($event)" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle checked="true" value="GERAL">Geral</mat-button-toggle>
+            <mat-button-toggle value="PRPI">PRPI</mat-button-toggle>
+            <mat-button-toggle value="PRM">PRM</mat-button-toggle>
         </mat-button-toggle-group>
     </section>
 </a>
