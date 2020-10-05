@@ -30,7 +30,7 @@ export class EquipamentsTableComponent implements OnInit {
   dataSource : MatTableDataSource<Equipament>;
   @Input() equipaments$: Observable<Array<Equipament>>;
   filter: string;
-  columnsToDisplay = ['select', 'patrimony', 'brand', 'category', 'model', 'ua', 'floor','status', 'warranty_start','warranty_end', 'acquisition_date', 'acquisition_value'];
+  columnsToDisplay = ['select', 'patrimony', 'brand', 'category', 'model', 'ua', 'floor','status', 'warranty', 'acquisition_date', 'acquisition_value', 'policy', 'zenworks', 'wsus', 'trend'];
   initialSelection = [];
   allowMultiSelect = true;
   selection = new SelectionModel<Equipament>(this.allowMultiSelect, this.initialSelection);
