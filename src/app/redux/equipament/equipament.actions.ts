@@ -7,21 +7,7 @@ import { Equipament, Status } from '../../models/equipament.model';
  */
 export const createEquipament = createAction(
     '[Equipaments Page] Create Equipament',
-    props<{
-        patrimony: string,
-        isComputer: boolean;
-        isPRM: boolean;
-        category: string,
-        status: Status,
-        brand?: string,
-        model?: string,
-        ua?: string,
-        floor?: string,
-        warranty_start?: Date | string,
-        warranty_end?: Date | string,
-        acquisition_date?: Date | string,
-        acquisition_value?: number
-    }>(),
+    props<{eq: Equipament}>(),
 );
 
 /**

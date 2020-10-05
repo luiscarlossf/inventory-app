@@ -18,6 +18,8 @@ import * as fromModel from '../../redux/model/model.reducer';
 import * as fromUa from '../../redux/ua/ua.reducer';
 import * as fromFloor from '../../redux/floor/floor.reducer';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
+import { GeneralService } from 'src/app/services/general/general.service';
+import * as utils from 'src/utils';
 
 
 @Component({
@@ -35,9 +37,12 @@ export class EditDialogComponent implements OnInit {
   servers_options = environment.servers_options;
   editForm: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Equipament | Computer, 
+  constructor(@Inject(MAT_DIALOG_DATA) public data: Equipament, 
               fb: FormBuilder,
-              private readonly store: Store<AppState>, private dialog: MatDialog, public dialogRef: MatDialogRef<EditDialogComponent>) { 
+              private readonly store: Store<AppState>, 
+              private dialog: MatDialog, 
+              public dialogRef: MatDialogRef<EditDialogComponent>,
+              private general: GeneralService) { 
     
     this.brands$ = this.store.select(fromBrand.selectAllIDs);                
     this.categories$ = this.store.select(fromCategory.selectAllIDs);
@@ -55,23 +60,24 @@ export class EditDialogComponent implements OnInit {
       'warranty_end': [data.warranty_end, ],
       'acquisition_date': [data.acquisition_date, ],
       'acquisition_value': [data.acquisition_value, ],
-      'policy': ['', ],
+      'policy': [data.policy, ],
       'status': [data.status,],
-      'status_wsus': ['', ],
-      'status_trend': ['',],
-      'status_zenworks': ['',],
+      'status_wsus': [data.status_wsus, ],
+      'status_trend': [data.status_trend,],
+      'status_zenworks': [data.status_zenworks,],
     });
     this.editForm.controls['patrimony'].disable();
     this.editForm.controls['brand'].disable();
     this.editForm.controls['category'].disable();
     this.editForm.controls['model'].disable();
     this.editForm.controls['ua'].disable();
-    if (this.editForm.controls['category'].value.includes('COMPUTADOR')){
-      this.editForm.controls['policy'].setValue( (data as Computer).policy);
-      this.editForm.controls['status_zenworks'].setValue( (data as Computer).status_zenworks);
-      this.editForm.controls['status_wsus'].setValue( (data as Computer).status_wsus);
-      this.editForm.controls['status_trend'].setValue( (data as Computer).status_trend);
-    }
+    /**
+    if (this.isComputer()){
+      this.editForm.controls['policy'].setValue(data.policy);
+      this.editForm.controls['status_zenworks'].setValue(data.status_zenworks);
+      this.editForm.controls['status_wsus'].setValue(data.status_wsus);
+      this.editForm.controls['status_trend'].setValue( data.status_trend);
+    }*/
   }
 
   ngOnInit(): void {
@@ -85,6 +91,14 @@ export class EditDialogComponent implements OnInit {
         this.dialogRef.close(form);
       }
     });
+  }
+
+  isComputer(): boolean{
+    let category = this.editForm.controls['category'];
+    if(category.value)
+      return this.general.getCategory(category.value).name.includes(utils.COMPUTER_ID);
+    else
+      return false;
   }
 
 }

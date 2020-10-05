@@ -24,6 +24,7 @@ import { Model } from 'src/app/models/model.model';
 import { Floor } from 'src/app/models/floor.model';
 import { Ua } from 'src/app/models/ua.model';
 import { ConfirmDialogComponent } from 'src/app/components/confirm-dialog/confirm-dialog.component';
+import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
   selector: 'app-equipaments',
@@ -52,7 +53,7 @@ export class EquipamentsComponent implements OnInit {
   @ViewChild(EquipamentsTableComponent, {static: true})
   private equipamentTable: EquipamentsTableComponent;
 
-  constructor(private readonly store: Store<AppState>, public dialog: MatDialog, private route: ActivatedRoute) { 
+  constructor(private readonly store: Store<AppState>, public dialog: MatDialog, private route: ActivatedRoute, private general: GeneralService) { 
     this.equipamentsState$ = this.store.pipe(select('equipaments'));
     this.equipaments$ = this.store.pipe(select(fromEquipament.selectEquipaments));
     this.brand$ = this.store.select(fromBrand.selectAllBrands);
@@ -67,11 +68,11 @@ export class EquipamentsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result=>{
       if(result){
-        let isComputer: boolean = this.category.get(result.category).name.includes(utils.COMPUTER_ID);
+        let isComputer: boolean = this.general.getCategory(result.category).name.includes(utils.COMPUTER_ID);
         let equipament: Equipament = {
           patrimony: result.patrimony,
           isComputer: isComputer,
-          isPRM: this.ua.get(result.ua).name.includes(utils.PRM_ID),
+          isPRM: this.general.getUa(result.ua).name.includes(utils.PRM_ID),
           warranty_start: result.warranty_start,
           warranty_end: result.warranty_end,
           acquisition_date: result.acquisition_date,
@@ -90,7 +91,7 @@ export class EquipamentsComponent implements OnInit {
           equipament.status_wsus = result.status_wsus;
           equipament.status_zenworks = result.status_zenworks;
         }
-        this.store.dispatch(EquipamentActions.createEquipament(equipament));
+        this.store.dispatch(EquipamentActions.createEquipament({eq:equipament}));
       }
     });
   }

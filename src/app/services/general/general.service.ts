@@ -25,7 +25,8 @@ export class GeneralService {
   constructor(private readonly store: Store<AppState>) { 
     this.store.select(fromEquipament.selectAllEquipaments)
       .subscribe(e => this.equipaments = e);
-    
+    var categories$ = this.store.select(fromCategory.selectAllCategories);
+    categories$.subscribe(c => this.categories = c);
     var uas$ = this.store.select(fromUa.selectAllUas);
     uas$.subscribe(u => this.uas = u);
   }
@@ -36,5 +37,9 @@ export class GeneralService {
 
   getUa(key: string) : Ua{
     return this.uas.get(key);
+  }
+
+  getCategory(key: string) : Category{
+    return this.categories.get(key);
   }
 }

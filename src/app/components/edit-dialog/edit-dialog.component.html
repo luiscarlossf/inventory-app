@@ -74,10 +74,10 @@
             </mat-select>
         </mat-form-field>
         <br>
-        <mat-checkbox *ngIf="editForm.controls['category'].value.includes('COMPUTADOR')"
+        <mat-checkbox *ngIf="isComputer()"
             [formControl]="editForm.controls['policy']">Política</mat-checkbox>
         <br>
-        <mat-form-field appearance="fill" *ngIf="editForm.controls['category'].value.includes('COMPUTADOR')">
+        <mat-form-field appearance="fill" *ngIf="isComputer()">
             <mat-label>Status do Zenworks</mat-label>
             <mat-select [formControl]="editForm.controls['status_zenworks']">
                 <mat-option *ngFor="let option of servers_options" [value]="option.value">{{option.title}}</mat-option>
@@ -85,7 +85,7 @@
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill"
-            *ngIf="editForm.controls['category'].value.includes('COMPUTADOR')">
+            *ngIf="isComputer()">
             <mat-label>Status do TREND</mat-label>
             <mat-select [formControl]="editForm.controls['status_trend']">
                 <mat-option *ngFor="let option of servers_options" [value]="option.value">{{option.title}}</mat-option>
@@ -93,7 +93,7 @@
         </mat-form-field>
         <br>
         <mat-form-field appearance="fill"
-            *ngIf="editForm.controls['category'].value.includes('COMPUTADOR')">
+            *ngIf="isComputer()">
             <mat-label>Status do WSUS</mat-label>
             <mat-select [formControl]="editForm.controls['status_wsus']">
                 <mat-option *ngFor="let option of servers_options" [value]="option.value">{{option.title}}</mat-option>

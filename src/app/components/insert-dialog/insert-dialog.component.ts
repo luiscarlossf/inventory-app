@@ -12,6 +12,8 @@ import * as fromFloor from '../../redux/floor/floor.reducer';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.component';
 import { Equipament } from 'src/app/models/equipament.model';
+import * as utils from 'src/utils';
+import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
   selector: 'app-insert-dialog',
@@ -28,7 +30,11 @@ export class InsertDialogComponent implements OnInit {
   servers_options = environment.servers_options;
   insertForm: FormGroup;
 
-  constructor( private readonly store: Store<AppState>, fb: FormBuilder, private dialog: MatDialog, public dialogRef: MatDialogRef<InsertDialogComponent>) { 
+  constructor( private readonly store: Store<AppState>, 
+    fb: FormBuilder, private dialog: MatDialog, 
+    public dialogRef: MatDialogRef<InsertDialogComponent>, 
+    private general: GeneralService) {
+       
     this.brands$ = this.store.select(fromBrand.selectAllIDs);                
     this.categories$ = this.store.select(fromCategory.selectAllIDs);
     this.models$ = this.store.select(fromModel.selectAllIDs);
@@ -61,6 +67,14 @@ export class InsertDialogComponent implements OnInit {
         this.dialogRef.close(form);
       }
     });
+  }
+
+  isComputer(): boolean{
+    let category = this.insertForm.controls['category'];
+    if(category.value)
+      return this.general.getCategory(category.value).name.includes(utils.COMPUTER_ID);
+    else
+      return false;
   }
 
   ngOnInit(): void {

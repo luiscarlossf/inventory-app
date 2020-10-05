@@ -67,7 +67,7 @@
             <input matInput [formControl]="insertForm.controls['acquisition_value']">
         </mat-form-field>
         <br>
-        <mat-checkbox [formControl]="insertForm.controls['policy']">Política</mat-checkbox>
+        <mat-checkbox *ngIf="isComputer()" [formControl]="insertForm.controls['policy']">Política</mat-checkbox>
         <br>
         <mat-form-field appearance="fill">
             <mat-label>Status</mat-label>
@@ -76,21 +76,21 @@
             </mat-select>
         </mat-form-field>
         <br>
-        <mat-form-field appearance="fill">
+        <mat-form-field *ngIf="isComputer()" appearance="fill">
             <mat-label>Status do Zenworks</mat-label>
             <mat-select [formControl]="insertForm.controls['status_zenworks']">
                 <mat-option *ngFor="let option of servers_options" [value]="option.value">{{option.title}}</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
-        <mat-form-field appearance="fill">
+        <mat-form-field *ngIf="isComputer()" appearance="fill">
             <mat-label>Status do TREND</mat-label>
             <mat-select [formControl]="insertForm.controls['status_trend']">
                 <mat-option *ngFor="let option of servers_options" [value]="option.value">{{option.title}}</mat-option>
             </mat-select>
         </mat-form-field>
         <br>
-        <mat-form-field appearance="fill">
+        <mat-form-field *ngIf="isComputer()" appearance="fill">
             <mat-label>Status do WSUS</mat-label>
             <mat-select [formControl]="insertForm.controls['status_wsus']">
                 <mat-option *ngFor="let option of servers_options" [value]="option.value">{{option.title}}</mat-option>

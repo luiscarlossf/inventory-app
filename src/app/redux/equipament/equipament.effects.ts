@@ -19,22 +19,29 @@ export class EquipamentEffects{
         ofType(EquipamentActions.createEquipament),
         mergeMap( action => {
             let equipament = {
-                patrimony: action.patrimony? action.patrimony: null,
-                isComputer: action.isComputer,
-                isPRM: action.isPRM,
-                category: action.category? action.category: null,
-                status: action.status? action.status: null,
-                brand: action.brand? action.brand: null,
-                model: action.model? action.model: null,
-                ua: action.ua? action.ua: null,
-                floor: action.floor? action.floor: null,
-                warranty_start: action.warranty_start ?  utils.convertDateToString(action.warranty_start as Date) : null,
-                warranty_end: action.warranty_end? utils.convertDateToString(action.warranty_end as Date) : null,
-                acquisition_date: action.acquisition_date? utils.convertDateToString(action.acquisition_date as Date): null,
-                acquisition_value: action.acquisition_value? action.acquisition_value : null,
+                patrimony: action.eq.patrimony? action.eq.patrimony: null,
+                isComputer: action.eq.isComputer,
+                isPRM: action.eq.isPRM,
+                category: action.eq.category? action.eq.category: null,
+                status: action.eq.status? action.eq.status: null,
+                brand: action.eq.brand? action.eq.brand: null,
+                model: action.eq.model? action.eq.model: null,
+                ua: action.eq.ua? action.eq.ua: null,
+                floor: action.eq.floor? action.eq.floor: null,
+                warranty_start: action.eq.warranty_start ?  utils.convertDateToString(action.eq.warranty_start as Date) : null,
+                warranty_end: action.eq.warranty_end? utils.convertDateToString(action.eq.warranty_end as Date) : null,
+                acquisition_date: action.eq.acquisition_date? utils.convertDateToString(action.eq.acquisition_date as Date): null,
+                acquisition_value: action.eq.acquisition_value? action.eq.acquisition_value : null,
             };
+
+            if(action.eq.isComputer){
+                equipament['policy']= action.eq.policy;
+                equipament['status_zenworks'] = action.eq.status_zenworks;
+                equipament['status_wsus'] = action.eq.status_wsus;
+                equipament['status_trend'] = action.eq.status_trend;
+            }
             if(equipament.isComputer){
-                return this.api.create<Computer>('computers', equipament)
+                return this.api.create<Equipament>('computers', equipament)
                 .pipe(
                     map(response => {
                         let newEquipament = <Equipament>response.body;
@@ -120,7 +127,7 @@ export class EquipamentEffects{
                         return EquipamentActions.deleteEquipamentSucess({url: action.equipament.url});
                     })
                 );
-            }else if(action.equipament){
+            }else if(action.equipament.isComputer){
                 return this.api.destroyById<Computer>(action.equipament.url)
                     .pipe( map(response => {
                         return EquipamentActions.deleteEquipamentSucess({url: action.equipament.url});
