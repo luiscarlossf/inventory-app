@@ -24,7 +24,6 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { PipesModule } from '../pipes/pipes.module';
 import { EditDialogComponent } from './edit-dialog/edit-dialog.component';
-import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 import { ConfirmDialogComponent } from './confirm-dialog/confirm-dialog.component';
 import { MatListModule } from '@angular/material/list';
 
@@ -38,7 +37,6 @@ import { MatListModule } from '@angular/material/list';
     SearchBoxComponent,
     CardItemComponent,
     EditDialogComponent,
-    DeleteDialogComponent,
     ConfirmDialogComponent,
   ],
   exports: [
@@ -53,7 +51,6 @@ import { MatListModule } from '@angular/material/list';
   entryComponents: [
     EditDialogComponent,
     InsertDialogComponent,
-    DeleteDialogComponent,
     ConfirmDialogComponent,
   ],
   imports: [
