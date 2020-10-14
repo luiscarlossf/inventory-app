@@ -33,7 +33,7 @@ header .left .logo{
 }
 header .user-name{
   position: relative;
-  bottom: 10px;
+  bottom: 7px;
   margin-left: 10px;
 }
 
@@ -72,6 +72,10 @@ header .search{
 /*CURRENT USER*/
 .user-content a{
   text-decoration: none;
+}
+
+.user-content mat-icon{
+  color: #74798C;
 }
 
 .user-content img{

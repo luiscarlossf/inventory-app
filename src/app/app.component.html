@@ -27,11 +27,14 @@
   <div class="right">
       <div class="user-content" *ngIf="user">
           <a href="#" title="Usuário logado">
+          <!--
               <img class="user-avatar"
                   src="assets/img/avatar/user.jpeg"
                   alt="Usuário logado"
                   width="32px"
                   height="32px">
+            --> 
+              <mat-icon>account_circle</mat-icon>
               <span class="user-name">{{ user.first_name }}</span>
           </a>
       </div>
