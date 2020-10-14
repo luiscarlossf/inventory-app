@@ -62,6 +62,74 @@ export class EquipamentsTableComponent implements OnInit {
       this.dataSource.filter = null;
    }
 
+   applyFilters(filters: any){
+    console.log('Appying filters: ', filters);
+    this.equipaments$.subscribe(equipaments => {
+      let aux = equipaments;
+      if((filters.brands !== "")&&(filters.brands.length !== 0)){
+        console.log('Filtrando por marcas...');
+        aux = aux.filter(equipament => filters.brands.includes(equipament.brand));
+      }
+      if((filters.categories !== "")&&(filters.categories.length !== 0)){
+        aux = aux.filter(equipament => filters.categories.includes(equipament.category));
+      }
+  
+      
+      if((filters.models !== "")&&(filters.models.length !== 0)){
+        aux = aux.filter(equipament => filters.models.includes(equipament.model));
+      }
+      
+      if((filters.uas !== "")&&(filters.uas.length !== 0)){
+        aux = aux.filter(equipament => filters.uas.includes(equipament.ua));
+      }
+      
+      if((filters.floors !== "") &&(filters.floorslength !== 0)){
+        aux = aux.filter(equipament => filters.floors.includes(equipament.floor));
+      }
+      
+      if(filters.warranty_start && filters.warranty_end){
+        aux = aux.filter(equipament => (equipament.warranty_start >= filters.warranty_start) && (equipament.warranty_end <= filters.warranty_end));
+      }
+      
+      if(filters.min_date && filters.max_date){
+        aux = aux.filter(equipament => (equipament.acquisition_date >= filters.min_date) && (equipament.acquisition_date <= filters.max_date));
+      }
+      
+      if(filters.min_value !== ""){
+        aux = aux.filter(equipament => equipament.acquisition_value >= filters.min_value);
+      }
+  
+      if(filters.max_value !== ""){
+        aux = aux.filter(equipament => equipament.acquisition_value <= filters.max_value);
+      }
+  
+      if((filters.policies !== "")&& (filters.status_trend.length !== 0)){
+        aux = aux.filter(equipament => filters.policies.includes(equipament.policy));
+      }
+      
+      if((filters.status !== "")&&(filters.status.length !== 0)){
+        aux = aux.filter(equipament => filters.status.includes(equipament.status));
+      }
+  
+      if((filters.status_wsus !== "")&&(filters.status_wsus.length !== 0)){
+        aux = aux.filter(equipament => filters.status_wsus.includes(equipament.status_wsus));
+      }
+  
+      if((filters.status_trend !== "")&&(filters.status_trend.length !== 0)){
+        aux = aux.filter(equipament => filters.status_trend.includes(equipament.status_trend));
+      }
+  
+      if((filters.status_zenworks !== "")&&(filters.status_zenworks.length !== 0)){
+        aux = aux.filter(equipament => filters.status_zenworks.includes(equipament.status_zenworks));
+      }
+      this.dataSource.data = aux;
+    });
+  }
+
+  resetFilters(){
+    this.equipaments$.subscribe(equipaments => this.dataSource.data = equipaments);
+  }
+
   /**
    * Retorna todos os elementos selecionados na tabela
    */

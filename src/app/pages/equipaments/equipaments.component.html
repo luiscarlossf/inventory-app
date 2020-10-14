@@ -1,6 +1,6 @@
 
 <div *ngIf="!searching" class="container">
-    <app-filters (filters)="applyFilters($event)">Loading filters...</app-filters>
+    <app-filters (filters)="applyFilters($event)" (reset)="resetFilters()">Loading filters...</app-filters>
 </div>
 
 <div class="container">
@@ -17,14 +17,6 @@
             <button mat-flat-button (click)="delete()">
             Remover
             <mat-icon>remove</mat-icon>
-            </button>
-            <button mat-flat-button (click)='alterServerStatus()'>
-            Alterar Server Status
-            <mat-icon>dns</mat-icon>
-            </button>
-            <button mat-flat-button>
-            Imprimir
-            <mat-icon>print</mat-icon>
             </button>
             <button mat-flat-button>
             Exportar

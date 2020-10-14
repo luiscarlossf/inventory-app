@@ -36,6 +36,7 @@ export interface Filters{
 })
 export class FiltersComponent implements OnInit {
   @Output() filters = new EventEmitter<Filters>();
+  @Output() reset = new EventEmitter();
   brands$: Observable<string[]>;
   categories$: Observable<string[]>;
   models$: Observable<string[]>;
@@ -76,6 +77,11 @@ export class FiltersComponent implements OnInit {
 
   onSubmit(form: any){
     this.filters.emit(form);
+  }
+
+  resetFilters(){
+    this.filtersForm.reset();
+    this.reset.emit(true);
   }
 
 }

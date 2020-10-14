@@ -111,76 +111,12 @@ export class EquipamentsComponent implements OnInit {
     });
   }
 
-  alterServerStatus(){
-
+  applyFilters(filters: any){
+    this.equipamentTable.applyFilters(filters);
   }
 
-  applyFilters(filters: any){
-    console.log('Appying filters: ', filters);
-    this.equipaments$.pipe(
-      map(equipaments => {
-        if(filters.brands){
-          console.log('Filtrando por marcas...');
-          return of(equipaments.filter(equipament => filters.brands.includes(equipament.brand)));
-        }else{
-          return of(equipaments);
-        }
-      }),
-    );
-      
-    console.log('Applied filters.');
-    if(filters.categories){
-
-    }
-
-    
-    if(filters.models){
-      
-    }
-    
-    if(filters.uas){
-      
-    }
-    
-    if(filters.floors){
-      
-    }
-    
-    if(filters.warranty_start && filters.warranty_end){
-      
-    }
-    
-    if(filters.min_date && filters.max_date){
-      
-    }
-    
-    if(filters.min_value){
-      
-    }
-
-    if(filters.max_value){
-      
-    }
-
-    if(filters.policies){
-      
-    }
-    
-    if(filters.status){
-      
-    }
-
-    if(filters.status_wsus){
-      
-    }
-
-    if(filters.status_trend){
-      
-    }
-
-    if(filters.status_zenworks){
-      
-    }
+  resetFilters(){
+    this.equipamentTable.resetFilters();
   }
 
   search(s: string){
