@@ -135,7 +135,7 @@ export class EquipamentsTableComponent implements OnInit {
    */
 
    getSelecteds(){
-     return this.dataSource.data.filter(row => this.selection.isSelected(row));
+     return this.selection.selected;
    }
   
   /**
@@ -190,6 +190,7 @@ export class EquipamentsTableComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result=>{
       if(result){
+        this.selection.deselect(data);
         this.store.dispatch(EquipamentActions.deleteEquipament({equipament: data}));
       }
     });
