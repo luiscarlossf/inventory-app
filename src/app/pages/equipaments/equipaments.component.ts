@@ -32,6 +32,7 @@ import { GeneralService } from 'src/app/services/general/general.service';
   styleUrls: ['./equipaments.component.css']
 })
 export class EquipamentsComponent implements OnInit {
+  title: string = "Equipamentos";
   equipamentsState$: Observable<fromEquipament.EquipamentState>;
 
   equipaments$: Observable<Equipament[]>;
